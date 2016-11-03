@@ -1,0 +1,5 @@
+C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\bin\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\bin\Debug\Riganti.Utils.Infrastructure.Core.pdb
+C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.pdb
