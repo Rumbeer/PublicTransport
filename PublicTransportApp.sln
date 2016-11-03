@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{0C2EA49D-1D43-4962-B0CF-D0749B5AA2BB}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Riganti.Utils.Infrastructure.EntityFramework", "Riganti.Utils.Infrastructure.EntityFramework\Riganti.Utils.Infrastructure.EntityFramework.csproj", "{3C1E4BE0-8351-461D-AF36-746D726CFD48}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{4B58D62F-C449-43F6-9488-AF8B02CCF676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{5184DA4D-CBFF-480F-B2BE-F2CF6BD5E0D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,26 +35,12 @@ Global
 		{4B58D62F-C449-43F6-9488-AF8B02CCF676}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B58D62F-C449-43F6-9488-AF8B02CCF676}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B58D62F-C449-43F6-9488-AF8B02CCF676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5184DA4D-CBFF-480F-B2BE-F2CF6BD5E0D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5184DA4D-CBFF-480F-B2BE-F2CF6BD5E0D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5184DA4D-CBFF-480F-B2BE-F2CF6BD5E0D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5184DA4D-CBFF-480F-B2BE-F2CF6BD5E0D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://josefk.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DAL\\DAL.csproj
-		SccProjectName1 = DAL
-		SccLocalPath1 = DAL
-		SccProjectUniqueName2 = Riganti.Utils.Infrastructure.Core\\Riganti.Utils.Infrastructure.Core.csproj
-		SccProjectName2 = Riganti.Utils.Infrastructure.Core
-		SccLocalPath2 = Riganti.Utils.Infrastructure.Core
-		SccProjectUniqueName3 = Riganti.Utils.Infrastructure.EntityFramework\\Riganti.Utils.Infrastructure.EntityFramework.csproj
-		SccProjectName3 = Riganti.Utils.Infrastructure.EntityFramework
-		SccLocalPath3 = Riganti.Utils.Infrastructure.EntityFramework
-		SccProjectUniqueName4 = ConsoleApp\\ConsoleApp.csproj
-		SccProjectName4 = ConsoleApp
-		SccLocalPath4 = ConsoleApp
 	EndGlobalSection
 EndGlobal

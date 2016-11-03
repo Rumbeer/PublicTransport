@@ -17,8 +17,8 @@ namespace DAL.Entities
         public string Name { get; set; }
 
         public virtual List<Vehicle> Vehicles { get; set; }
-        [ForeignKey("Tariff")]
-        public int TariffId { get; set; }
+        //[ForeignKey("Tariff")]
+        //public int TariffId { get; set; }
 
         [Required]
         public virtual Tariff Tariff { get; set; }

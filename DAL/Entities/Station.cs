@@ -11,6 +11,7 @@ namespace DAL.Entities
 {
     public class Station :IEntity<int>
     {
+        [Key]
         public int ID { get; set; }
         [Required]
         public string Name { get; set; }
