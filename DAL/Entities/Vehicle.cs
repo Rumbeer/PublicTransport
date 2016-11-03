@@ -14,6 +14,9 @@ namespace DAL.Entities
         public int ID { get; set; }
 
         [Required]
+        public int SeatCount { get; set; }
+
+        [Required]
         public virtual Company Company { get; set; }
         public virtual List<Seat> Seats { get; set; }
     }

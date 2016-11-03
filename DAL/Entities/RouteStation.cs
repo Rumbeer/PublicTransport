@@ -13,6 +13,12 @@ namespace DAL.Entities
         public int ID { get; set; }
 
         [Required]
+        public DateTime DepartFromFirstStation { get; set; }
+
+        [Required]
+        public DateTime DelayFromFirstStation { get; set; }
+
+        [Required]
         public int Order { get; set; }
 
         [Required]

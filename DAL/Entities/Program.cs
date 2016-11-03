@@ -2,23 +2,18 @@
 using Riganti.Utils.Infrastructure.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
 {
     public class Program : IEntity<int>
     {
         public int ID { get; set; }
-
-        [Required]
-        public DateTime Depart { get; set; }
-
-        [Required]
-        public DateTime Arrive { get; set; }
-
+        
         public bool IsSeatOccupied { get; set; }
 
         [Required]

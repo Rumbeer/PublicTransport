@@ -13,7 +13,6 @@ namespace ConsoleApp
         
         static void Main(string[] args)
         {
-            int a;
             var station = new Station() { Name = "Ceska", Town = "Brno" };
             using (var db = new AppDbContext())
             {
