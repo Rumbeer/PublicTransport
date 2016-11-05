@@ -36,7 +36,16 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -46,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppInfrastructure\AppQuery.cs" />
+    <Compile Include="AppInfrastructure\AppUnitOfWork.cs" />
+    <Compile Include="AppInfrastructure\AppUnitOfWorkProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
@@ -59,9 +71,11 @@
     <Compile Include="Repositories\TariffRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
+    <Compile Include="Services\AppService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -78,8 +92,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DTOs\" />
     <Folder Include="Queries\" />
-    <Folder Include="Services\" />
+    <Folder Include="Utils\DataRepresentation\" />
+    <Folder Include="Utils\Enums\" />
+    <Folder Include="Utils\Resolvers\" />
+    <Folder Include="Utils\Validation\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

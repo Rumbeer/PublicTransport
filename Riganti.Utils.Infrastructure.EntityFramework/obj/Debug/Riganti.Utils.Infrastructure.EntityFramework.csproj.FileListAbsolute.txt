@@ -12,3 +12,17 @@ C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFra
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.csprojResolveAssemblyReference.cache
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll.config
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\BrockAllen.MembershipReboot.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.Core.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\BrockAllen.MembershipReboot.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.xml
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.csprojResolveAssemblyReference.cache
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb

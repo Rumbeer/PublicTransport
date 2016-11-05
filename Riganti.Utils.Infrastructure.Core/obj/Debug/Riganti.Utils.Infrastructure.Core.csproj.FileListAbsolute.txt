@@ -3,3 +3,8 @@ C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\bin\
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.csprojResolveAssemblyReference.cache
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.dll
 C:\Users\ADMIN\Desktop\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.Core\bin\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.Core\bin\Debug\Riganti.Utils.Infrastructure.Core.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.csprojResolveAssemblyReference.cache
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\Riganti.Utils.Infrastructure.Core\obj\Debug\Riganti.Utils.Infrastructure.Core.pdb
