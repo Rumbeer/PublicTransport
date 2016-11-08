@@ -16,6 +16,8 @@ namespace DAL.Entities
         
         public bool IsSeatOccupied { get; set; }
 
+        public int VehicleId { get; set; }
+
         [Required]
         public virtual RouteStation RouteStation { get; set; }
 

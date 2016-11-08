@@ -73,10 +73,10 @@
     <Compile Include="Entities\RouteStation.cs" />
     <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Station.cs" />
-    <Compile Include="Entities\Tariff.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Enum\DiscountType.cs" />
+    <Compile Include="Enum\VehicleType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

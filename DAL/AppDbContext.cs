@@ -34,7 +34,6 @@ namespace DAL
         public DbSet<Route> Routes { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Station> Stations { get; set; }
-        public DbSet<Tariff> Tarrifs { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<RouteStation> RouteStations { get; set; }
@@ -42,10 +41,6 @@ namespace DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.ConfigureMembershipRebootUserAccounts<UserAccount>();
-
-            modelBuilder.Entity<Company>()
-                .HasRequired(company => company.Tariff)
-                .WithRequiredDependent(tariff => tariff.Company);
 
             modelBuilder.Entity<Ticket>()
                 .HasOptional(ticket => ticket.Questionnaire)

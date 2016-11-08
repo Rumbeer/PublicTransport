@@ -14,13 +14,20 @@ namespace DAL.Entities
     {
         public int ID { get; set; }
         [Required]
+        [MaxLength(256)]
         public string Name { get; set; }
 
+        [Required]
+        public double CostPerKm { get; set; }
+
+        [NotMapped]
+        public bool RedeemableTicket => this.TimeToRedeem != null;
+
+        public TimeSpan? TimeToRedeem { get; set; }
         public virtual List<Vehicle> Vehicles { get; set; }
         //[ForeignKey("Tariff")]
         //public int TariffId { get; set; }
 
-        [Required]
-        public virtual Tariff Tariff { get; set; }
+        public virtual List<Discount> Discounts { get; set; }
     }
 }

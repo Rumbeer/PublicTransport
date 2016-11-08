@@ -14,6 +14,9 @@ namespace DAL.Entities
         public int ID { get; set; }
 
         [Required]
+        public int SeatNumber { get; set; }
+
+        [Required]
         public virtual Vehicle Vehicle { get; set;}
     }   
 }

@@ -58,3 +58,11 @@ C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\Brock
 C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\obj\Debug\ConsoleApp.csprojResolveAssemblyReference.cache
 C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\obj\Debug\ConsoleApp.exe
 C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\obj\Debug\ConsoleApp.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\BL.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\Castle.Core.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\Castle.Windsor.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\AutoMapper.dll
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\BL.pdb
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\Castle.Core.xml
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\Castle.Windsor.xml
+C:\Users\Pepa\Documents\VS\CSharp2\PublicTransportApp\ConsoleApp\bin\Debug\AutoMapper.xml
