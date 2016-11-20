@@ -41,7 +41,7 @@ namespace BL.Services.Discounts
                 }
                 if (discountDto.DiscountType != DiscountType.Special && ListDiscountsOfCompany(discountDto.DiscountType, companyId).FirstOrDefault() != null)
                 {
-                    throw new NullReferenceException("Discount service - CreateDiscount(...) Company cannot have discounts of same type");
+                    throw new ArgumentException("Discount service - CreateDiscount(...) Company cannot have discounts of same type");
                 }
                 var discount = Mapper.Map<Discount>(discountDto);
 
@@ -64,14 +64,14 @@ namespace BL.Services.Discounts
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var discount = discountRepository.GetById(discountDto.ID);
-                if(discountDto.DiscountType != discount.DiscountType)
+                var discount = discountRepository.GetById(discountDto.ID, d => d.Company);
+                if (discountDto.DiscountType != discount.DiscountType)
                 {
                     throw new ArgumentException("Discount service - EditDiscount(...) discount cannot change type");
                 }
                 Mapper.Map(discountDto, discount);
-
                 discountRepository.Update(discount);
+                
                 uow.Commit();
             }
         }

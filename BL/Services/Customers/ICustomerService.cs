@@ -11,13 +11,19 @@ namespace BL.Services.Customers
         /// Creates new customer
         /// </summary>
         /// <param name="customerDto">customer details</param>
-        void CreateCustomer(Guid customerAccountId);
+        void CreateCustomer(CustomerDTO customerDto);
 
         /// <summary>
         /// Updates customer
         /// </summary>
         /// <param name="companyDto">cusotmer details</param>
         void EditCustomer(CustomerDTO customerDto);
+
+        /// <summary>
+        /// Deletes customer by id
+        /// </summary>
+        /// <param name="customerId">id of customer</param>
+        void DeleteCustomer(int customerId);
 
         /// <summary>
         /// Gets companyDTO of specific id

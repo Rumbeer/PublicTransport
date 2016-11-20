@@ -36,8 +36,8 @@ namespace DAL.Entities
         [Required]
         public virtual Company Company { get; set; }
 
-        [ForeignKey("Questionnaire")]
-        public int QuestionnaireId { get; set; }
-        public virtual Questionnaire Questionnaire { get; set; }
+        //[ForeignKey("Questionnaire")]
+        //public int QuestionnaireId { get; set; }
+        //public virtual Questionnaire Questionnaire { get; set; }
     }
 }

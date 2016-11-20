@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using BL.DTOs.Tickets;
 using BL.DTOs.Filters;
+using BL.DTOs.Programs;
 using BL.Queries;
 using BL.Repositories;
 using DAL.Entities;
@@ -22,25 +23,63 @@ namespace BL.Services.Tickets
 
         private readonly DiscountRepository discountRepository;
 
-        public TicketService(TicketRepository ticketRepository, ProgramRepository programRepository, DiscountRepository discountRepository)
+        private readonly CustomerRepository customerRepository;
+
+        private readonly CompanyRepository companyRepository;
+
+        private readonly TicketListAllQuery ticketListAllQuery;
+
+        public TicketService(TicketListAllQuery ticketListAllQuery, TicketRepository ticketRepository, ProgramRepository programRepository, DiscountRepository discountRepository, CustomerRepository customerRepository, CompanyRepository companyRepository)
         {
+            this.ticketListAllQuery = ticketListAllQuery;
+            this.companyRepository = companyRepository;
+            this.customerRepository = customerRepository;
             this.ticketRepository = ticketRepository;
             this.programRepository = programRepository;
             this.discountRepository = discountRepository;
         }
         #endregion
 
-        public TicketDTO CreateTicket(int customerId, int[] programIds)
+        public void CreateTicket(int customerId, int companyId, TicketDTO ticketDto, List<ProgramDTO> programDtos)
         {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var ticket = new Ticket();
+                Mapper.Map(ticketDto, ticket);
+                var customer = customerRepository.GetById(customerId, c => c.Tickets);
+                var company = companyRepository.GetById(companyId, c => c.Tickets);
+                if(company == null || customer == null)
+                {
+                    throw new ArgumentNullException("Ticket service - CreateTicket(...) company and customer cant be null");
+                }
 
-            throw new NotImplementedException();
+                customer.Tickets.Add(ticket);
+                company.Tickets.Add(ticket);
+
+                ticket.Customer = customer;
+                ticket.Company = company;
+
+                ticket.Programs = new List<Program>();
+                foreach(var programDto in programDtos){
+                    var program = programRepository.GetById(programDto.ID, p => p.Ticket, p => p.RouteStation);
+                    program.Ticket = ticket;
+                    ticket.Programs.Add(program);
+                    ticket.TotalDistance += program.RouteStation.DistanceFromPreviousStation;
+                }
+
+                ticket.IsConfirmed = false;
+                ticket.IsRefunded = false;
+
+                ticketRepository.Insert(ticket);
+                uow.Commit();
+            }
         }
 
         public void TicketReservation(int ticketId)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var ticket = ticketRepository.GetById(ticketId, t => t.Programs);
+                var ticket = ticketRepository.GetById(ticketId, t => t.Programs, t => t.Company, t => t.Customer, t => t.Discount);
                 if (ticket == null)
                 {
                     throw new ArgumentNullException("Ticket service - TicketReservation(...) ticket cant be null");
@@ -55,9 +94,13 @@ namespace BL.Services.Tickets
                     {
                         throw new ArgumentException("Ticket service - TicketReservation(...) seat is already occupied");
                     }
-                    program.IsSeatOccupied = true;
+                    var p = programRepository.GetById(program.ID, pr => pr.RouteStation, pr => pr.Ticket, pr => pr.Seat);
+                    p.IsSeatOccupied = true;
+                    programRepository.Update(p);
                 }
                 ticket.IsConfirmed = true;
+                ticket.Price = CalculatePrice(ticketId);
+                ticketRepository.Update(ticket);
                 uow.Commit();
             }
         }
@@ -66,7 +109,7 @@ namespace BL.Services.Tickets
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var ticket = ticketRepository.GetById(ticketId, t => t.Company, t => t.Programs);
+                var ticket = ticketRepository.GetById(ticketId, t => t.Programs, t => t.Company, t => t.Customer, t => t.Discount);
                 if(ticket == null)
                 {
                     throw new ArgumentNullException("Ticket service - TicketRefund(...) ticket cant be null");
@@ -86,9 +129,12 @@ namespace BL.Services.Tickets
                 }
                 foreach (var program in ticket.Programs)
                 {
-                    program.IsSeatOccupied = false;
+                    var p = programRepository.GetById(program.ID, pr => pr.RouteStation, pr => pr.Ticket, pr => pr.Seat);
+                    p.IsSeatOccupied = false;
+                    programRepository.Update(p);
                 }
                 ticket.IsRefunded = true;
+                ticketRepository.Update(ticket);
                 uow.Commit();
             }
         }
@@ -97,7 +143,7 @@ namespace BL.Services.Tickets
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var ticket = ticketRepository.GetById(ticketId, t => t.Company, t => t.Discount);
+                var ticket = ticketRepository.GetById(ticketId, t => t.Programs, t => t.Company, t => t.Customer, t => t.Discount);
                 if (ticket == null)
                 {
                     throw new ArgumentNullException("Ticket service - ClaimDiscount(...) ticket cant be null");
@@ -106,7 +152,7 @@ namespace BL.Services.Tickets
                 {
                     throw new ArgumentNullException("Ticket service - ClaimDiscount(...) ticket cant have two discounts");
                 }
-                var discount = discountRepository.GetById(discountId, d => d.Company);
+                var discount = discountRepository.GetById(discountId, d => d.Company, d => d.Tickets);
                 if (discount == null || discount.Company.ID != ticket.Company.ID)
                 {
                     throw new ArgumentNullException("Ticket service - ClaimDiscount(...) company does not support this discount");
@@ -116,7 +162,9 @@ namespace BL.Services.Tickets
                     throw new ArgumentNullException("Ticket service - ClaimDiscount(...) Incorrect code");
                 }
                 ticket.Discount = discount;
+                discount.Tickets.Add(ticket);
                 ticket.Price = CalculatePrice(ticketId);
+                ticketRepository.Update(ticket);
                 uow.Commit();
             }
         }
@@ -133,5 +181,22 @@ namespace BL.Services.Tickets
                 return ticket.Discount == null ? ticket.Company.CostPerKm * ticket.TotalDistance : ticket.Company.CostPerKm * ticket.TotalDistance * ((double)ticket.Discount.Value/100);
             }
         }
+
+        public List<TicketDTO> ListAllTickets()
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return ticketListAllQuery.Execute().ToList();
+            }
+        }
+
+        public TicketDTO GetTicketById(int ticketId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return Mapper.Map<TicketDTO>(ticketRepository.GetById(ticketId));
+            }
+        }
+
     }
 }

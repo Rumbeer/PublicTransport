@@ -16,7 +16,7 @@ namespace DAL.Entities
         [Required]
         public string Text { get; set; }
 
-        [Required]
-        public virtual Ticket Ticket { get; set; }
+        //[Required]
+        //public virtual Ticket Ticket { get; set; }
     }
 }

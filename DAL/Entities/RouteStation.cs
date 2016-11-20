@@ -12,20 +12,24 @@ namespace DAL.Entities
     {
         public int ID { get; set; }
 
+        public DateTime? DepartFromFirstStation { get; set; }
+
+        public TimeSpan Delay { get; set; }
+
+        //zo stanice do dalsej
         [Required]
-        public DateTime DepartFromFirstStation { get; set; }
+        public TimeSpan TimeToNextStation { get; set; }
 
         [Required]
-        public DateTime DelayFromFirstStation { get; set; }
+        public TimeSpan TimeFromFirstStation { get; set; }
 
-        [Required]
         public int Order { get; set; }
 
         [Required]
         public double DistanceFromPreviousStation { get; set; }
 
         [Required]
-        public virtual Route  Route { get; set; }
+        public virtual Route Route { get; set; }
 
         [Required]
         public virtual Station Station { get; set; }

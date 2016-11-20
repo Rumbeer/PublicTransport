@@ -13,10 +13,8 @@ namespace DAL.Entities
     public class Program : IEntity<int>
     {
         public int ID { get; set; }
-        
-        public bool IsSeatOccupied { get; set; }
 
-        public int VehicleId { get; set; }
+        public bool IsSeatOccupied { get; set; }
 
         [Required]
         public virtual RouteStation RouteStation { get; set; }

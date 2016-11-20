@@ -20,8 +20,6 @@ namespace BL.DTOs.Tickets
 
         public int SeatNumber { get; set; }
         
-        public int VehicleId { get; set; }
-
         public bool IsConfirmed { get; set; }
 
         public bool IsRefunded { get; set; }

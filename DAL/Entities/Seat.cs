@@ -18,5 +18,7 @@ namespace DAL.Entities
 
         [Required]
         public virtual Vehicle Vehicle { get; set;}
+
+        public virtual List<Program> Programs { get; set; }
     }   
 }

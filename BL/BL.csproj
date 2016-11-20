@@ -87,20 +87,41 @@
     <Compile Include="DTOs\Filters\CompanyFilter.cs" />
     <Compile Include="DTOs\Filters\CustomerFilter.cs" />
     <Compile Include="DTOs\Filters\DiscountFilter.cs" />
+    <Compile Include="DTOs\Filters\ProgramFilter.cs" />
+    <Compile Include="DTOs\Filters\RouteFilter.cs" />
+    <Compile Include="DTOs\Filters\RouteStationFilter.cs" />
     <Compile Include="DTOs\Filters\SeatFilter.cs" />
+    <Compile Include="DTOs\Filters\StationFilter.cs" />
     <Compile Include="DTOs\Filters\VehicleFilter.cs" />
     <Compile Include="DTOs\PagedListQueryResultDTO.cs" />
+    <Compile Include="DTOs\Programs\ProgramDTO.cs" />
+    <Compile Include="DTOs\Routes\RouteDTO.cs" />
+    <Compile Include="DTOs\RouteStations\RouteStationDTO.cs" />
     <Compile Include="DTOs\Seats\SeatDTO.cs" />
+    <Compile Include="DTOs\Stations\StationDTO.cs" />
     <Compile Include="DTOs\Tickets\TicketDTO.cs" />
     <Compile Include="DTOs\Vehicles\VehicleDTO.cs" />
     <Compile Include="DTOs\Vehicles\VehicleListQueryResultDTO.cs" />
+    <Compile Include="Facades\CustomerFacade.cs" />
+    <Compile Include="Facades\RouteFacade.cs" />
+    <Compile Include="Facades\TicketFacade.cs" />
     <Compile Include="Mapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\CompanyListQuery.cs" />
+    <Compile Include="Queries\CreateSpecificRouteQuery.cs" />
     <Compile Include="Queries\CustomerListAllQuery.cs" />
     <Compile Include="Queries\CustomerListQuery.cs" />
     <Compile Include="Queries\DiscountsOfCompanyQuery.cs" />
+    <Compile Include="Queries\EmptyProgramsListQuery.cs" />
+    <Compile Include="Queries\FindProgramsOfRouteQuery.cs" />
+    <Compile Include="Queries\RouteListAllQuery.cs" />
+    <Compile Include="Queries\RouteListQuery.cs" />
+    <Compile Include="Queries\RouteStationListQuery.cs" />
     <Compile Include="Queries\SeatListQuery.cs" />
+    <Compile Include="Queries\StationCreateQuery.cs" />
+    <Compile Include="Queries\StationInRouteStationQuery.cs" />
+    <Compile Include="Queries\StationListQuery.cs" />
+    <Compile Include="Queries\TicketListAllQuery.cs" />
     <Compile Include="Queries\VehicleListQuery.cs" />
     <Compile Include="Repositories\CompanyRepository.cs" />
     <Compile Include="Repositories\CustomerRepository.cs" />
@@ -112,8 +133,6 @@
     <Compile Include="Repositories\SeatRepository.cs" />
     <Compile Include="Repositories\StationRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
-    <Compile Include="Repositories\UserAccount\UserAccountManager.cs" />
-    <Compile Include="Repositories\UserAccount\UserAccountRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Services\AppService.cs" />
     <Compile Include="Services\Companies\CompanyService.cs" />
@@ -122,6 +141,10 @@
     <Compile Include="Services\Customers\ICustomerService.cs" />
     <Compile Include="Services\Discounts\DiscountService.cs" />
     <Compile Include="Services\Discounts\IDiscountService.cs" />
+    <Compile Include="Services\Routes\IRouteService.cs" />
+    <Compile Include="Services\Stations\IStationService.cs" />
+    <Compile Include="Services\Routes\RouteService.cs" />
+    <Compile Include="Services\Stations\StationService.cs" />
     <Compile Include="Services\Tickets\ITicketService.cs" />
     <Compile Include="Services\Tickets\TicketService.cs" />
     <Compile Include="Services\Vehicles\IVehicleService.cs" />
@@ -145,12 +168,7 @@
       <Name>Riganti.Utils.Infrastructure.EntityFramework</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\DataRepresentation\" />
-    <Folder Include="Utils\Enums\" />
-    <Folder Include="Utils\Resolvers\" />
-    <Folder Include="Utils\Validation\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -18,7 +18,7 @@ namespace BL
         {
             container.Register(
 
-                Component.For<Func<System.Data.Entity.DbContext>>()
+                Component.For<Func<DbContext>>()
                     .Instance(() => new AppDbContext())
                     .LifestyleTransient(),
 

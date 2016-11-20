@@ -20,6 +20,7 @@ namespace BL.DTOs.Customers
 
         public string Address { get; set; }
 
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
+
     }
 }

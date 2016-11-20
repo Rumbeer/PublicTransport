@@ -1,18 +1,22 @@
 ﻿using BL.DTOs.Tickets;
+using BL.DTOs.Programs;
+using System.Collections.Generic;
 
 namespace BL.Services.Tickets
 {
     public interface ITicketService
     {
         /// <summary>
-        /// creates new ticket from programs and custmer
+        /// Creates new ticket
         /// </summary>
         /// <param name="customerId">id of customer</param>
-        /// <param name="programIds">ids of programs</param>
-        TicketDTO CreateTicket(int customerId, int[] programIds);
+        /// <param name="companyId">id of company</param>
+        /// <param name="ticketDto">ticket details</param>
+        /// <param name="programDtos">list of programs</param>
+        void CreateTicket(int customerId, int companyId, TicketDTO ticketDto, List<ProgramDTO> programDtos);
 
         /// <summary>
-        /// Makes reservatioin for the ticket
+        /// Makes reservation for the ticket
         /// </summary>
         /// <param name="ticketId">id of ticket</param>
         void TicketReservation(int ticketId);
@@ -30,5 +34,18 @@ namespace BL.Services.Tickets
         /// <param name="discountId">id of discount</param>
         /// <param name="changingDiscount">true if the customer wants to claim different discount than he already claimed</param>
         void ClaimDiscount(int ticketId, int discountId, bool changingDiscount, string code);
+
+        /// <summary>
+        /// lists all tickets
+        /// </summary>
+        /// <returns></returns>
+        List<TicketDTO> ListAllTickets();
+
+        /// <summary>
+        /// Gets ticket by id
+        /// </summary>
+        /// <param name="ticketId">id of ticket</param>
+        /// <returns></returns>
+        TicketDTO GetTicketById(int ticketId);
     }
 }

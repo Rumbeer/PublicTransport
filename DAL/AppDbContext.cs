@@ -42,9 +42,9 @@ namespace DAL
         {
             modelBuilder.ConfigureMembershipRebootUserAccounts<UserAccount>();
 
-            modelBuilder.Entity<Ticket>()
-                .HasOptional(ticket => ticket.Questionnaire)
-                .WithOptionalDependent(questionnaire => questionnaire.Ticket);
+            //modelBuilder.Entity<Ticket>()
+            //    .HasOptional(ticket => ticket.Questionnaire)
+            //    .WithOptionalDependent(questionnaire => questionnaire.Ticket);
         }
 
         private void InitializeDbContext()

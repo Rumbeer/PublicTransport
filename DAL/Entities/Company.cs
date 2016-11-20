@@ -29,5 +29,7 @@ namespace DAL.Entities
         //public int TariffId { get; set; }
 
         public virtual List<Discount> Discounts { get; set; }
+
+        public virtual List<Ticket> Tickets { get; set; }
     }
 }

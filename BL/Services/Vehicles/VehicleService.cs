@@ -43,8 +43,12 @@ namespace BL.Services.Vehicles
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                vehicleListQuery.Filter = new VehicleFilter { LicencePlate = vehicleDto.LicencePlate };
-                if(vehicleListQuery.Execute().SingleOrDefault() != null)
+                var query = vehicleListQuery;
+                query.ClearSortCriterias();
+                query.Filter = new VehicleFilter { LicencePlate = vehicleDto.LicencePlate };
+                query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
+                query.Skip = 0;
+                if (query.Execute().SingleOrDefault() != null)
                 {
                     throw new ArgumentException("Vehicle service - CreateVehicle(...) vehicle with this licence plate already exists");
                 }
@@ -104,7 +108,11 @@ namespace BL.Services.Vehicles
         {
             using (UnitOfWorkProvider.Create())
             {
-                vehicleListQuery.Filter = new VehicleFilter { LicencePlate = licencePlate };
+                var query = vehicleListQuery;
+                query.ClearSortCriterias();
+                query.Filter = new VehicleFilter { LicencePlate = licencePlate };
+                query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
+                query.Skip = 0;
                 var vehicle = vehicleListQuery.Execute().SingleOrDefault();
                 return vehicle != null ? vehicle.ID : 0;
             }

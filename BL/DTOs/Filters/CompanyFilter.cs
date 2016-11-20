@@ -6,7 +6,7 @@ namespace BL.DTOs.Filters
     {
         public string Name { get; set; }
 
-        public DateTime? TimeToRedeem { get; set; }
+        public TimeSpan? TimeToRedeem { get; set; }
     }
 }
 

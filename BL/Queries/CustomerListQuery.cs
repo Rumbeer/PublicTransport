@@ -18,7 +18,7 @@ namespace BL.Queries
 
         protected override IQueryable<CustomerDTO> GetQueryable()
         {
-            IQueryable<Customer> query = Context.Customers.Include(nameof(Customer.Account));
+            IQueryable<Customer> query = Context.Customers;
 
             if (!string.IsNullOrEmpty(Filter?.Email))
             {
@@ -26,15 +26,15 @@ namespace BL.Queries
                 {
                     throw new ArgumentException("CustomerListQuery - GetQueryable(...) given email had invalid format");
                 }
-                query = query.Where(cutomer => cutomer.Account.Email.ToLower().Equals(Filter.Email.ToLower()));
+                query = query.Where(cutomer => cutomer.Email.ToLower().Equals(Filter.Email.ToLower()));
             }
             if (!string.IsNullOrEmpty(Filter?.FirstName))
             {
-                query = query.Where(cutomer => cutomer.Account.FirstName.ToLower().Equals(Filter.FirstName.ToLower()));
+                query = query.Where(cutomer => cutomer.FirstName.ToLower().Equals(Filter.FirstName.ToLower()));
             }
             if (!string.IsNullOrEmpty(Filter?.LastName))
             {
-                query = query.Where(cutomer => cutomer.Account.LastName.ToLower().Equals(Filter.LastName.ToLower()));
+                query = query.Where(cutomer => cutomer.LastName.ToLower().Equals(Filter.LastName.ToLower()));
             }
             return query.ProjectTo<CustomerDTO>();
         }

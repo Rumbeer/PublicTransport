@@ -1,5 +1,6 @@
 ﻿using DAL.Enum;
 using Riganti.Utils.Infrastructure.Core;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace DAL.Entities
@@ -17,5 +18,7 @@ namespace DAL.Entities
 
         [Required]
         public virtual Company Company { get; set; }
+
+        public virtual List<Ticket> Tickets { get; set; }
     }
 }

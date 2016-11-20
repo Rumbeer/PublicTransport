@@ -6,7 +6,6 @@ using BL.DTOs.Customers;
 using BL.DTOs.Filters;
 using BL.Queries;
 using BL.Repositories;
-using BL.Repositories.UserAccount;
 using DAL.Entities;
 using Riganti.Utils.Infrastructure.Core;
 
@@ -18,54 +17,56 @@ namespace BL.Services.Customers
         public int CustomerPageSize => 1;
 
         #region Dependencies
-        private readonly UserAccountRepository userRepository;
-
         private readonly CustomerRepository customerRepository;
 
         private readonly CustomerListAllQuery customerListAllQuery;
 
         private readonly CustomerListQuery customerListQuery;
 
-        public CustomerService(UserAccountRepository userRepository, CustomerRepository customerRepository, CustomerListAllQuery customerListAllQuery, CustomerListQuery customerListQuery)
+        public CustomerService(CustomerRepository customerRepository, CustomerListAllQuery customerListAllQuery, CustomerListQuery customerListQuery)
         {
-            this.userRepository = userRepository;
             this.customerRepository = customerRepository;
             this.customerListAllQuery = customerListAllQuery;
             this.customerListQuery = customerListQuery;
         }
         #endregion
 
-        public void CreateCustomer(Guid customerAccountId)
+        public void CreateCustomer(CustomerDTO customerDto)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var customerAccount = userRepository.GetById(customerAccountId);
-
-                var customer = new Customer { Account = customerAccount };
-
+                var customer = Mapper.Map<Customer>(customerDto);
                 customerRepository.Insert(customer);
-
                 uow.Commit();
             }
+            var c = GetCustomerByEmail(customerDto.Email);
         }
 
         public void EditCustomer(CustomerDTO customerDto)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var customer = customerRepository.GetById(customerDto.ID);
+                var customer = customerRepository.GetById(customerDto.ID, c => c.Tickets);
                 Mapper.Map(customerDto, customer);
                 customerRepository.Update(customer);
                 uow.Commit();
             }
-            throw new NotImplementedException();
+        }
+
+        public void DeleteCustomer(int customerId)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                customerRepository.Delete(customerId);
+                uow.Commit();
+            }
         }
 
         public CustomerDTO GetCustomerById(int customerId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                var customer = customerRepository.GetById(customerId, cust => cust.Account);
+                var customer = customerRepository.GetById(customerId);
                 return customer == null ? null : Mapper.Map<CustomerDTO>(customer);
             }
         }
@@ -118,6 +119,9 @@ namespace BL.Services.Customers
                 var query = customerListQuery;
                 query.ClearSortCriterias();
                 query.Filter = new CustomerFilter { Email = email };
+                query.Skip = 0;
+                query.AddSortCriteria(customer => customer.LastName, SortDirection.Ascending);
+                query.Take = 1;
                 return query.Execute().SingleOrDefault();
             }
         }
