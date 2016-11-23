@@ -1,4 +1,4 @@
-﻿using DAL.Enum;
+﻿using BL.Enum;
 using System.ComponentModel.DataAnnotations;
 
 namespace BL.DTOs.Discounts

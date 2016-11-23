@@ -98,3 +98,6 @@ F:\PublicTransportApp\Web\bin\BrockAllen.MembershipReboot.Ef.pdb
 F:\PublicTransportApp\Web\bin\BrockAllen.MembershipReboot.pdb
 F:\PublicTransportApp\Web\obj\Debug\Web.dll
 F:\PublicTransportApp\Web\obj\Debug\Web.pdb
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\obj\Debug\Web.csprojResolveAssemblyReference.cache
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\obj\Debug\Web.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\obj\Debug\Web.pdb

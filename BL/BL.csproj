@@ -80,6 +80,7 @@
     <Compile Include="AppInfrastructure\AppUnitOfWork.cs" />
     <Compile Include="AppInfrastructure\AppUnitOfWorkProvider.cs" />
     <Compile Include="BLInstaller.cs" />
+    <Compile Include="Enum\DiscountType.cs" />
     <Compile Include="DTOs\Companies\CompanyDTO.cs" />
     <Compile Include="DTOs\Customers\CustomerDTO.cs" />
     <Compile Include="DTOs\Customers\CustomerListQueryResultDTOcs.cs" />

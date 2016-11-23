@@ -1,6 +1,6 @@
 ﻿using BL.DTOs.Discounts;
 using System.Collections.Generic;
-using DAL.Enum;
+using BL.Enum;
 
 namespace BL.Services.Discounts
 {

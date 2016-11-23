@@ -212,7 +212,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Enums\DiscountType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CompanyDetailsModel.cs" />
     <Compile Include="Models\CreateSpecificRouteModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -283,8 +285,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Company\ListAllCompanies.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
-    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\CreateCompany.cshtml" />
     <Content Include="Views\Company\EditCompany.cshtml" />
+    <Content Include="Views\Company\CompanyDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

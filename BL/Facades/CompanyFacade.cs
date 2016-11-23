@@ -6,7 +6,7 @@ using BL.DTOs.Vehicles;
 using BL.Services.Companies;
 using BL.Services.Discounts;
 using BL.Services.Vehicles;
-using DAL.Enum;
+using BL.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;

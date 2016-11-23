@@ -3,11 +3,11 @@ using System.Linq;
 using AutoMapper;
 using BL.DTOs.Discounts;
 using BL.DTOs.Filters;
-using DAL.Enum;
 using BL.Queries;
 using BL.Repositories;
 using DAL.Entities;
 using System;
+using BL.Enum;
 
 namespace BL.Services.Discounts
 {
@@ -65,7 +65,7 @@ namespace BL.Services.Discounts
             using (var uow = UnitOfWorkProvider.Create())
             {
                 var discount = discountRepository.GetById(discountDto.ID, d => d.Company);
-                if (discountDto.DiscountType != discount.DiscountType)
+                if ((DAL.Enum.DiscountType)discountDto.DiscountType != discount.DiscountType)
                 {
                     throw new ArgumentException("Discount service - EditDiscount(...) discount cannot change type");
                 }
@@ -82,7 +82,7 @@ namespace BL.Services.Discounts
             {
                 var query = discountsOfCompanyQuery;
                 query.ClearSortCriterias();
-                query.Filter = new DiscountFilter { DiscountType = discountType, CompanyId = companyId };
+                query.Filter = new DiscountFilter { DiscountType = (DAL.Enum.DiscountType)discountType, CompanyId = companyId };
                 return discountsOfCompanyQuery.Execute() ?? new List<DiscountDTO>();
             }
         }

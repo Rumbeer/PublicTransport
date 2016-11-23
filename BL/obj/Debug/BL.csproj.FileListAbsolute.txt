@@ -24,3 +24,6 @@ F:\PublicTransportApp\BL\bin\Debug\EntityFramework.xml
 F:\PublicTransportApp\BL\bin\Debug\EntityFramework.SqlServer.xml
 F:\PublicTransportApp\BL\obj\Debug\BL.dll
 F:\PublicTransportApp\BL\obj\Debug\BL.pdb
+C:\Users\Pepa\Documents\GitHub\PublicTransport\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
+C:\Users\Pepa\Documents\GitHub\PublicTransport\BL\obj\Debug\BL.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\BL\obj\Debug\BL.pdb
