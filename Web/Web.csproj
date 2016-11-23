@@ -215,6 +215,7 @@
     <Compile Include="Helper\Enums\DiscountType.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CompanyDetailsModel.cs" />
+    <Compile Include="Models\CreateDiscountModel.cs" />
     <Compile Include="Models\CreateSpecificRouteModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -288,6 +289,8 @@
     <Content Include="Views\Company\CreateCompany.cshtml" />
     <Content Include="Views\Company\EditCompany.cshtml" />
     <Content Include="Views\Company\CompanyDetails.cshtml" />
+    <Content Include="Views\Company\CreateDiscount.cshtml" />
+    <Content Include="Views\Company\EditDiscount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

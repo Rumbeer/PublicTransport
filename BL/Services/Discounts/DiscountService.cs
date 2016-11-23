@@ -82,7 +82,7 @@ namespace BL.Services.Discounts
             {
                 var query = discountsOfCompanyQuery;
                 query.ClearSortCriterias();
-                query.Filter = new DiscountFilter { DiscountType = (DAL.Enum.DiscountType)discountType, CompanyId = companyId };
+                query.Filter = new DiscountFilter { DiscountType = discountType, CompanyId = companyId };
                 return discountsOfCompanyQuery.Execute() ?? new List<DiscountDTO>();
             }
         }

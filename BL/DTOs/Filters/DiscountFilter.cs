@@ -1,5 +1,5 @@
 ﻿using System;
-using DAL.Enum;
+using BL.Enum;
 
 namespace BL.DTOs.Filters
 {

@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using Web.Helper.Enums;
+using BL.DTOs.Discounts;
+using BL.DTOs.Vehicles;
 
 namespace Web.Controllers
 {
@@ -20,6 +22,7 @@ namespace Web.Controllers
         {
             return View();
         }
+        #region Company Methods
 
         public ActionResult ListAllCompanies()
         {
@@ -78,6 +81,86 @@ namespace Web.Controllers
             return RedirectToAction("ListAllCompanies");
         }
 
+        #endregion
+
+        #region Discount Methods
+
+        public ActionResult CreateDiscount(int companyId)
+        {
+            return View(new CreateDiscountModel()
+            {
+                CompanyId = companyId,
+                Discount = new DiscountDTO()
+            });
+        }
+
+        [HttpPost]
+        public ActionResult CreateDiscount(CreateDiscountModel model)
+        {
+            try
+            {
+                CompanyFacade.CreateDiscount(model.Discount, model.CompanyId);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View(model);
+            }
+            if(model.Discount.Code != null && !model.Discount.DiscountType.Equals(DiscountType.Special))
+            {
+                ViewBag.Message = "This type of discount should not have code!";
+                return View(model);
+            }
+            return RedirectToAction("CompanyDetails", new { id = model.CompanyId});
+        }
+
+        public ActionResult DeleteDiscount(int id, int companyId)
+        {
+            CompanyFacade.DeleteDiscount(id);
+            return RedirectToAction("CompanyDetails", new { id = companyId });
+        }
+
+        public ActionResult EditDiscount(int id, int companyId)
+        {
+            return View(new CreateDiscountModel()
+            {
+                CompanyId = companyId,
+                Discount = CompanyFacade.GetDiscountById(id)
+            });
+        }
+
+        [HttpPost]
+        public ActionResult EditDiscount(CreateDiscountModel model)
+        {
+            try
+            {
+                CompanyFacade.EditDiscount(model.Discount);
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View(model);
+            }
+            if (model.Discount.Code != null && !model.Discount.DiscountType.Equals(DiscountType.Special))
+            {
+                ViewBag.Message = "This type of discount should not have code!";
+                return View(model);
+            }
+            return RedirectToAction("CompanyDetails", new { id = model.CompanyId });
+        }
+
+        #endregion
+
+        #region Vehicle Methods
+
+        public ActionResult CreateVehicle()
+        {
+            return View(new VehicleDTO());
+        }
+
+        #endregion
+
+        #region Helper
         private CompanyDetailsModel GetCompanyDetails(int companyId)
         {
             var model = new CompanyDetailsModel();
@@ -85,5 +168,6 @@ namespace Web.Controllers
             model.Discounts = CompanyFacade.ListDiscountsOfCompany(null, companyId);
             return model;
         }
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace BL.Queries
             }
             if(Filter?.DiscountType != null)
             {
-                query = query.Where(discount => discount.DiscountType == Filter.DiscountType);
+                query = query.Where(discount => discount.DiscountType == (DAL.Enum.DiscountType)Filter.DiscountType);
             }
             return query.ProjectTo<DiscountDTO>();
         }
