@@ -25,20 +25,19 @@ namespace BL.Queries
             {
                 query = query.Where(routeStation => routeStation.Route.ID == Filter.RouteId);
             }
-            if(!(Filter.ArrivalStationId == null) || !(Filter.DepartStationId == null))
+            if (Filter.DepartStationId != null)
             {
-                RouteStation departRouteStation = query.Where(routeStation => routeStation.Station.ID == Filter.DepartStationId).FirstOrDefault();
-                RouteStation arrivalRouteStation = query.Where(routeStation => routeStation.Station.ID == Filter.ArrivalStationId).FirstOrDefault();
-                if (departRouteStation == null || arrivalRouteStation == null)
-                {
-                    throw new ArgumentNullException("RouteStation cannot be null");
-                }
-
-                if (Filter.DepartStationId != null && Filter.ArrivalStationId != null)
-                {
-                    query = query.Where(routeStation => routeStation.Order >= departRouteStation.Order && routeStation.Order <= arrivalRouteStation.Order);
-                }
+                query = query.Where(routeStation => routeStation.Station.ID == Filter.DepartStationId);
             }
+            if (Filter.ArrivalStationId != null)
+            {
+                query = query.Where(routeStation => routeStation.Station.ID == Filter.ArrivalStationId);
+            }
+            if (Filter.DepartFromFirstStation != null)
+            {
+                query = query.Where(routeStation => routeStation.DepartFromFirstStation == Filter.DepartFromFirstStation && routeStation.Order == Filter.Order);
+            }
+
             return query.ProjectTo<RouteStationDTO>();
         }
     }

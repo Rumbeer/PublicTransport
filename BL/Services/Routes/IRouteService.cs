@@ -17,7 +17,9 @@ namespace BL.Services.Routes
 
         List<RouteStationDTO> GetRouteStationsByRoute(int routeId);
 
-        List<Tuple<RouteDTO, List<RouteStationDTO>>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime);
+        List<Tuple<RouteStationDTO, RouteStationDTO>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime);
+
+        int GetRouteIdByRouteStation(int routeStationId);
 
         void AddRouteStation(int stationId, int routeId, RouteStationDTO routeStationDTO);
 

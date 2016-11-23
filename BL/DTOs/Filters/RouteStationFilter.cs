@@ -11,5 +11,7 @@ namespace BL.DTOs.Filters
         public int? RouteId { get; set; }
         public int? DepartStationId { get; set; }
         public int? ArrivalStationId { get; set; }
+        public DateTime? DepartFromFirstStation { get; set; }
+        public int? Order { get; set; }
     }
 }

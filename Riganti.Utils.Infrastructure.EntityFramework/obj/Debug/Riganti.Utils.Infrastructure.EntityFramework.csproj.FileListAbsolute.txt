@@ -12,3 +12,17 @@ F:\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Ent
 F:\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.csprojResolveAssemblyReference.cache
 F:\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
 F:\PublicTransportApp\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll.config
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\BrockAllen.MembershipReboot.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.Core.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\Riganti.Utils.Infrastructure.Core.pdb
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\BrockAllen.MembershipReboot.pdb
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.xml
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.csprojResolveAssemblyReference.cache
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.dll
+C:\Users\ADMIN\Desktop\PublicTransport\Riganti.Utils.Infrastructure.EntityFramework\obj\Debug\Riganti.Utils.Infrastructure.EntityFramework.pdb

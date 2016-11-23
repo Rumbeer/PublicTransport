@@ -57,10 +57,6 @@ namespace BL.Services.Routes
                 var route = routeRepository.GetById(routeId, r => r.RouteStations, s => s.RouteStations);
                 createSpecificRouteQuery.RouteId = routeId;
                 var routeStationsTemplates = createSpecificRouteQuery.Execute().ToList();
-                if(routeStationsTemplates.FirstOrDefault() == null)
-                {
-                    throw new ArgumentNullException("Route service: CreateSpecificRoute(...) - There are no templates for creating new route.");
-                }
                 var seatDTOs = ListSeatsOfVehicle(vehicleId);
 
                 foreach (var routeStationTemplate in routeStationsTemplates)
@@ -129,29 +125,47 @@ namespace BL.Services.Routes
             }
         }
 
-        public List<Tuple<RouteDTO, List<RouteStationDTO>>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
+        public List<Tuple<RouteStationDTO, RouteStationDTO>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                routeStationListQuery.Filter = new RouteStationFilter
+                {
+                    DepartStationId = departureStationID
+                };
+                List<RouteStationDTO> departStations = routeStationListQuery.Execute().ToList();
+
+                routeStationListQuery.Filter = new RouteStationFilter
+                {
+                    ArrivalStationId = arriveStationID
+                };
+                List<RouteStationDTO> arriveStations = routeStationListQuery.Execute().ToList();
+
+                List<Tuple<RouteStationDTO, RouteStationDTO>> links = new List<Tuple<RouteStationDTO, RouteStationDTO>>();
+                foreach (var departStation in departStations)
+                {
+                    int routeId = GetRouteIdByRouteStation(departStation.ID);
+                    foreach (var arriveStation in arriveStations)
+                    {
+                        if (GetRouteIdByRouteStation(arriveStation.ID) == routeId && departStation.DepartFromFirstStation == arriveStation.DepartFromFirstStation)
+                        {
+                            links.Add(Tuple.Create(departStation, arriveStation));
+                        }
+                    }
+                }
+                return links;
+            }
+        }
+
+        public int GetRouteIdByRouteStation(int routeStationId)
         {
             using (UnitOfWorkProvider.Create())
             {
                 routeListQuery.Filter = new RouteFilter
                 {
-                    DepartStationID = departureStationID,
-                    ArrivalStationID = arriveStationID
+                    RouteStationID = routeStationId
                 };
-                List<RouteDTO> routes = routeListQuery.Execute().ToList();
-                var resultRoutesList = new List<Tuple<RouteDTO, List<RouteStationDTO>>>();
-                foreach (var routeItem in routes)
-                {
-                    routeStationListQuery.Filter = new RouteStationFilter
-                    {
-                        RouteId = routeItem.ID,
-                        DepartStationId = departureStationID,
-                        ArrivalStationId = arriveStationID
-                    };
-                    List<RouteStationDTO> routesStationDTOs = routeStationListQuery.Execute().ToList();
-                    resultRoutesList.Add(Tuple.Create(routeItem, routesStationDTOs));
-                }
-                return resultRoutesList;
+                return routeListQuery.Execute().FirstOrDefault().ID;
             }
         }
 
@@ -217,7 +231,7 @@ namespace BL.Services.Routes
                 }
                 return listOfPrograms;
             }
-            
+
         }
         public List<RouteDTO> ListAllRoutes()
         {
