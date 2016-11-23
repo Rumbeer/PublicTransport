@@ -22,15 +22,9 @@ namespace BL.Queries
         protected override IQueryable<RouteDTO> GetQueryable()
         {
             IQueryable<Route> query = Context.Routes;
-            IQueryable<RouteStation> queryRouteStation = Context.RouteStations;
-            queryRouteStation = queryRouteStation.Where(routeStation => routeStation.Station.ID == Filter.DepartStationID || routeStation.Station.ID == Filter.ArrivalStationID);
-            if(queryRouteStation.Count() != 2)
-            {
-                throw new ArgumentException();
-            }
-            query = query.Where(route => route.RouteStations.Contains(queryRouteStation.First()) && route.RouteStations.Contains(queryRouteStation.Last()));
+            query.Where(route => route.RouteStations.Any(routeStation => routeStation.ID == Filter.RouteStationID));
             return query.ProjectTo<RouteDTO>();
-
         }
     }
 }
+

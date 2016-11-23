@@ -10,5 +10,7 @@ namespace BL.DTOs.Filters
     {
         public int DepartStationID { get; set; }
         public int ArrivalStationID { get; set; }
+
+        public int? RouteStationID { get; set; }
     }
 }
