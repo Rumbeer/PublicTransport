@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DAL.Enum;
+using BL.Enum;
 
 namespace BL.DTOs.Vehicles
 {

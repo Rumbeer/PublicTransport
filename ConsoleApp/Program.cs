@@ -5,7 +5,7 @@ using Castle.Windsor;
 using BL.DTOs.Companies;
 using BL.DTOs.Vehicles;
 using BL.DTOs.Seats;
-using DAL.Enum;
+using BL.Enum;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -20,7 +20,7 @@ using BL.DTOs.Tickets;
 using BL.Services.Routes;
 using BL.DTOs.Routes;
 using BL.DTOs.RouteStations;
-using DAL;
+
 
 namespace ConsoleApp
 {
