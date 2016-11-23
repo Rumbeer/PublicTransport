@@ -57,6 +57,10 @@ namespace BL.Services.Routes
                 var route = routeRepository.GetById(routeId, r => r.RouteStations, s => s.RouteStations);
                 createSpecificRouteQuery.RouteId = routeId;
                 var routeStationsTemplates = createSpecificRouteQuery.Execute().ToList();
+                if(routeStationsTemplates.FirstOrDefault() == null)
+                {
+                    throw new ArgumentNullException("Route service: CreateSpecificRoute(...) - There are no templates for creating new route.");
+                }
                 var seatDTOs = ListSeatsOfVehicle(vehicleId);
 
                 foreach (var routeStationTemplate in routeStationsTemplates)
@@ -116,7 +120,7 @@ namespace BL.Services.Routes
             }
         }
 
-        public List<RouteStationDTO> getRouteStationsByRoute(int routeId)
+        public List<RouteStationDTO> GetRouteStationsByRoute(int routeId)
         {
             using (UnitOfWorkProvider.Create())
             {
@@ -125,7 +129,7 @@ namespace BL.Services.Routes
             }
         }
 
-        public List<Tuple<RouteDTO, List<RouteStationDTO>>> findRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
+        public List<Tuple<RouteDTO, List<RouteStationDTO>>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
         {
             using (UnitOfWorkProvider.Create())
             {

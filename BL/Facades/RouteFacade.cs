@@ -40,7 +40,7 @@ namespace BL.Facades
 
         public List<RouteStationDTO> getRouteStationsByRoute(int routeId)
         {
-            return routeService.getRouteStationsByRoute(routeId);
+            return routeService.GetRouteStationsByRoute(routeId);
         }
 
         //List<Tuple<RouteDTO, List<RouteStationDTO>>> findRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
@@ -66,12 +66,12 @@ namespace BL.Facades
             stationService.DeleteStation(stationID);
         }
 
-        public StationDTO getStationById(int stationID)
+        public StationDTO GetStationById(int stationID)
         {
             return stationService.GetStationById(stationID);
         }
 
-        public List<StationDTO> getAllStationsByTown(string town)
+        public List<StationDTO> GetAllStationsByTown(string town)
         {
             return stationService.GetAllStationsByTown(town);
         }

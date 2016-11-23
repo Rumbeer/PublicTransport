@@ -309,7 +309,7 @@ namespace ConsoleApp
 
             routeService.CreateSpecificRoute(routeId, DateTime.Now, vehicleService.GetVehicleIdByLicencePlate("a"));
 
-            var listRouteStations = routeService.getRouteStationsByRoute(routeId);
+            var listRouteStations = routeService.GetRouteStationsByRoute(routeId);
             int[] listRouteStationsForTicket = new int[2];
             int i = 0;
             foreach (var routeStation in listRouteStations)

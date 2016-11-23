@@ -1,3 +1,4 @@
+F:\PublicTransportApp\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
 F:\PublicTransportApp\BL\bin\Debug\BL.dll.config
 F:\PublicTransportApp\BL\bin\Debug\BL.dll
 F:\PublicTransportApp\BL\bin\Debug\BL.pdb
@@ -21,6 +22,5 @@ F:\PublicTransportApp\BL\bin\Debug\Castle.Core.xml
 F:\PublicTransportApp\BL\bin\Debug\Castle.Windsor.xml
 F:\PublicTransportApp\BL\bin\Debug\EntityFramework.xml
 F:\PublicTransportApp\BL\bin\Debug\EntityFramework.SqlServer.xml
-F:\PublicTransportApp\BL\obj\Debug\BL.csprojResolveAssemblyReference.cache
 F:\PublicTransportApp\BL\obj\Debug\BL.dll
 F:\PublicTransportApp\BL\obj\Debug\BL.pdb

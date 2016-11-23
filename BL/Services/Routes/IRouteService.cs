@@ -15,9 +15,9 @@ namespace BL.Services.Routes
 
         void DeleteStationFromRoute(int routeStationID);
 
-        List<RouteStationDTO> getRouteStationsByRoute(int routeId);
+        List<RouteStationDTO> GetRouteStationsByRoute(int routeId);
 
-        List<Tuple<RouteDTO, List<RouteStationDTO>>> findRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime);
+        List<Tuple<RouteDTO, List<RouteStationDTO>>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime);
 
         void AddRouteStation(int stationId, int routeId, RouteStationDTO routeStationDTO);
 

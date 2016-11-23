@@ -102,6 +102,7 @@
     <Compile Include="DTOs\Tickets\TicketDTO.cs" />
     <Compile Include="DTOs\Vehicles\VehicleDTO.cs" />
     <Compile Include="DTOs\Vehicles\VehicleListQueryResultDTO.cs" />
+    <Compile Include="Facades\CompanyFacade.cs" />
     <Compile Include="Facades\CustomerFacade.cs" />
     <Compile Include="Facades\RouteFacade.cs" />
     <Compile Include="Facades\TicketFacade.cs" />

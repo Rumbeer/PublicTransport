@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BL.DTOs.Companies.CompanyDTO>
+
+@{
+    ViewBag.Title = "ListAllCompanies";
+}
+
+<h2>Companies</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateCompany")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostPerKm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RedeemableTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeToRedeem)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostPerKm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RedeemableTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeToRedeem)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditCompany", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "DeleteCompany", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
