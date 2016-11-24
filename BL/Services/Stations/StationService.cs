@@ -102,16 +102,19 @@ namespace BL.Services.Stations
 
         public string GetStationNameByRouteStation(int routeStationId)
         {
-            stationListQuery.Filter = new StationFilter
+            using (UnitOfWorkProvider.Create())
             {
-                RouteStationId = routeStationId
-            };
-            var station = stationListQuery.Execute().ToList().FirstOrDefault();
-            if(station != null)
-            {
-                return station.Name;
+                stationListQuery.Filter = new StationFilter
+                {
+                    RouteStationId = routeStationId
+                };
+                var station = stationListQuery.Execute().ToList().FirstOrDefault();
+                if (station != null)
+                {
+                    return station.Name;
+                }
+                return null;
             }
-            return null;
         }
     }
 }

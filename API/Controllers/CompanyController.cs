@@ -15,12 +15,22 @@ namespace API.Controllers
     {
         public CompanyFacade CompanyFacade { get; set; }
 
+        /// <summary>
+        /// GET request for company, list all existed companies
+        /// </summary>
+        /// <returns>All companies</returns>
         //GET: api/Company
         public IHttpActionResult Get()
         {
             return Content(HttpStatusCode.OK, CompanyFacade.ListAllCompanies());
         }
 
+
+        /// <summary>
+        /// List specific company
+        /// </summary>
+        /// <param name="id">Id of company</param>
+        /// <returns>Company with given id</returns>
         // GET: api/Company/5
         public IHttpActionResult Get(int id)
         {
@@ -33,9 +43,12 @@ namespace API.Controllers
             return Content(HttpStatusCode.OK, company);
         }
 
+        /// <summary>
+        /// Creates new company
+        /// </summary>
+        /// <param name="company">company to be created</param>
+        /// <returns>OK, if created</returns>
         // POST: api/Company
-        // CreateCompany
-        //[HttpPost]
         public IHttpActionResult Post([FromBody]CompanyDTO company)
         {
             try
@@ -56,6 +69,13 @@ namespace API.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Update of specific company
+        /// </summary>
+        /// <param name="id">id of company</param>
+        /// <param name="company">Updated attributes</param>
+        /// <returns>OK, if found and updated</returns>
         // PUT: api/Company/5
         public IHttpActionResult Put(int id, [FromBody]CompanyDTO company)
         {
