@@ -7,7 +7,6 @@ namespace Web.Models
 {
     public class TestModel
     {
-        public int Add { get; set; }
-        public List<string> List { get; set; }
+        public string List { get; set; }
     }
 }

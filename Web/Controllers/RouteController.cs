@@ -1,6 +1,12 @@
-﻿using BL.DTOs.Routes;
+﻿using BL.DTOs.Filters;
+using BL.DTOs.Routes;
+using BL.DTOs.RouteStations;
 using BL.Facades;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using Web.Models;
 using X.PagedList;
@@ -48,24 +54,73 @@ namespace Web.Controllers
             return RedirectToAction("CompanyRoutes", companyId);
         }
 
+        public ActionResult GetStationCountForRouteTemplate(int companyId, int routeId)
+        {
+            return View(new int[] { companyId, routeId, 1} );
+        }
+
+        [HttpPost]
+        public ActionResult GetStationCountForRouteTemplate(int[] values)
+        {
+            int companyId = values[0];
+            int routeId = values[1];
+            int stationCount = values[2];
+            return RedirectToAction("CreateRouteTemplate", new { companyId, routeId, stationCount });
+        }
+
+        public ActionResult CreateRouteTemplate(int companyId, int routeId, int stationCount)
+        {
+            var templates = new List<CreateRouteTemplatesModel>();
+            for (int i = 0; i < stationCount; i++)
+            {
+                templates.Add(new CreateRouteTemplatesModel
+                {
+                    CompanyId = companyId,
+                    RouteId = routeId,
+                    RouteStation = new RouteStationDTO()
+                });
+            }
+
+            return View(templates);
+        }
+
+        [HttpPost]
+        public ActionResult CreateRouteTemplate(List<CreateRouteTemplatesModel> model)
+        {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            foreach (var template in model)
+            {
+                var station = RouteFacade.GetAllStationsByFilter(new StationFilter { Name = template.StationName, Town = template.StationTown });
+                template.RouteStation.TimeFromFirstStation = TimeSpan.Parse(template.TimeFromFirstStation);
+                template.RouteStation.TimeToNextStation = TimeSpan.Parse(template.TimeToNextStation);
+                RouteFacade.AddRouteStation(station.FirstOrDefault().ID, template.RouteId, template.RouteStation);
+            }
+            return RedirectToAction("")
+        }
+        
         public ActionResult Test()
         {
-            var model = new TestModel
+            var model = new List<TestModel>() {
+                new TestModel
             {
-                Add = 2,
-                List = new List<string>()
-            };
+                List = null
+            } };
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Test(TestModel model)
+        public ActionResult Test(List<TestModel> model)
         {
-            if (model.Add == 1)
-            {
-                model.List.Add("ahoj");
+                model.Add(new TestModel { List = "ahoj" });
                 return View(model);
-            }
+            return RedirectToAction("Home", "Index", "Home");
+        }
+        
+        public ActionResult Test2(List<TestModel> model)
+        {
+
+            model.Add(new TestModel { List = "ahoj" });
+            return View(model);
             return RedirectToAction("Home", "Index", "Home");
         }
 

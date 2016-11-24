@@ -22,7 +22,6 @@ namespace BL.DTOs.RouteStations
         [Required]
         public TimeSpan TimeFromFirstStation { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public int Order { get; set; }
 
         [Required]

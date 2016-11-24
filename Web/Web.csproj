@@ -241,6 +241,7 @@
     <Compile Include="Models\CreateRouteModel.cs" />
     <Compile Include="Models\CompanyDetailsModel.cs" />
     <Compile Include="Models\CreateDiscountModel.cs" />
+    <Compile Include="Models\CreateRouteTemplatesModel.cs" />
     <Compile Include="Models\CreateSpecificRouteModel.cs" />
     <Compile Include="Models\CreateVehicleModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -328,6 +329,8 @@
     <Content Include="Views\Vehicle\CompanyVehicles.cshtml" />
     <Content Include="Views\Vehicle\CreateVehicle.cshtml" />
     <Content Include="Views\Route\Test.cshtml" />
+    <Content Include="Views\Route\GetStationCountForRouteTemplate.cshtml" />
+    <Content Include="Views\Route\CreateRouteTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

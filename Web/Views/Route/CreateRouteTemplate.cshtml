@@ -1,0 +1,75 @@
+﻿@using Web.Models
+
+@model List<CreateRouteTemplatesModel>
+
+@{
+    ViewBag.Title = "CreateRouteTemplate";
+}
+
+<h2>CreateRouteTemplate</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @foreach (var template in Model)
+    {
+        <div class="form-horizontal">
+            <h4>CreateRouteTemplatesModel</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => template.StationName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => template.StationName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => template.StationName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => template.StationTown, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => template.StationTown, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => template.StationTown, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => template.RouteStation.Order, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => template.RouteStation.Order, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => template.RouteStation.Order, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => template.TimeFromFirstStation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => template.TimeFromFirstStation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => template.TimeFromFirstStation, "", new { @class = "text-danger" }) Format - HH:MM:SS
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => template.TimeToNextStation, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => template.TimeToNextStation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => template.TimeToNextStation, "", new { @class = "text-danger" }) Format - HH:MM:SS
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => template.RouteId)
+            @Html.HiddenFor(model => template.CompanyId)
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
