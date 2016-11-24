@@ -35,7 +35,7 @@ namespace BL.Queries
 
             if(Filter?.VehicleType != null)
             {
-                query = query.Where(vehicle => vehicle.VehicleType == Filter.VehicleType);
+                query = query.Where(vehicle => vehicle.VehicleType == (DAL.Enum.VehicleType)Filter.VehicleType);
             }
 
             return query.ProjectTo<VehicleDTO>();
