@@ -9,9 +9,11 @@ namespace BL.Services.Routes
 {
     public interface IRouteService
     {
+        int PageSize { get; }
+
         void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId);
 
-        void CreateRoute(RouteDTO routeDTO);
+        void CreateRoute(RouteDTO routeDTO, int companyId);
 
         void DeleteStationFromRoute(int routeStationID);
 
@@ -28,6 +30,8 @@ namespace BL.Services.Routes
         List<List<ProgramDTO>> ListEmptyProgramsOfRouteStations(int[] routeStationIds);
 
         List<RouteDTO> ListAllRoutes();
+
+        RouteListQueryResultDTO ListCompanyRoutes(int companyId, int page = 1);
 
         void DeleteRoute(int routeId);
     }

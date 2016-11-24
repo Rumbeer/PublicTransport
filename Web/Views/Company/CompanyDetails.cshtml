@@ -6,13 +6,84 @@
 
 <h2>CompanyDetails</h2>
 
-<div>
-    <h4>CompanyDetailsModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-    </dl>
-</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.CostPerKm)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.RedeemableTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.TimeToRedeem)
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Company.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Company.CostPerKm)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Company.RedeemableTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Company.TimeToRedeem)
+        </td>
+    </tr>
+</table>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Create New Discount", "CreateDiscount", new { companyId = Model.Company.ID})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Discounts.FirstOrDefault().DiscountType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discounts.FirstOrDefault().Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discounts.FirstOrDefault().Code)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Discounts)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiscountType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditDiscount", new { id = item.ID, companyId = Model.Company.ID }) |
+                @Html.ActionLink("Delete", "DeleteDiscount", new { id = item.ID, companyId = Model.Company.ID })
+            </td>
+        </tr>
+    }
+</table>
+<p>
+    @Html.ActionLink("Vehicles", "CompanyVehicles")
+</p>
+
+<p>
+    @Html.ActionLink("Routes", "CompanyRoutes", "Route", new { companyId = Model.Company.ID }, null)
+</p>
+
+
+
+<p>
+    @Html.ActionLink("Back to List", "ListAllCompanies")
 </p>

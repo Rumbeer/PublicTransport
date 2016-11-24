@@ -46,7 +46,7 @@ namespace BL.Services.Companies
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var company = companyRepository.GetById(companyDto.ID, c => c.Vehicles);
+                var company = companyRepository.GetById(companyDto.ID, c => c.Vehicles, c => c.Routes, c => c.Discounts);
                 if (!company.Name.Equals(companyDto.Name) && GetCompanyIdByName(companyDto.Name) != 0)
                 {
                     throw new ArgumentException("Company service - EditCompany(...) company with that name already exists");

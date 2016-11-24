@@ -6,7 +6,7 @@ namespace BL.DTOs.Seats
     {
         public int ID { get; set; }
 
-        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please set the value greater than 0")]
         public int SeatNumber { get; set; }
     }
 }

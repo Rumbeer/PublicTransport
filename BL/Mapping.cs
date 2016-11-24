@@ -25,7 +25,10 @@ namespace BL
                 config.CreateMap<Vehicle, VehicleDTO>().ReverseMap();
                 config.CreateMap<Seat, SeatDTO>().ReverseMap();
                 config.CreateMap<Customer, CustomerDTO>().ReverseMap();
-                config.CreateMap<Discount, DiscountDTO>().ReverseMap();
+                config.CreateMap<Discount, DiscountDTO>()
+                    .ForMember(dest => dest.DiscountType, option => option.MapFrom(discount => (BL.Enum.DiscountType)discount.DiscountType))
+                    .ReverseMap();
+
                 config.CreateMap<Ticket, TicketDTO>().ReverseMap();
                 config.CreateMap<Program, ProgramDTO>().ReverseMap();
                 config.CreateMap<Station, StationDTO>().ReverseMap();

@@ -27,6 +27,9 @@ namespace BL.Facades
             this.discountService = discountService;
             this.vehicleService = vehicleService;
         }
+
+        public int VehiclePageSize => vehicleService.PageSize;
+
         /// <summary>
         /// Creates new company
         /// </summary>

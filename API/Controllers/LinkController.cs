@@ -12,12 +12,6 @@ namespace API.Controllers
     {
         public RouteFacade RouteFacade { get; set; }
 
-        //GET: api/Link
-        public IHttpActionResult Get(string town)
-        {
-            return Content(HttpStatusCode.OK, RouteFacade.GetAllStationsByTown(town));
-        }
-
         // GET: api/Link/5
         public string Get(int id)
         {

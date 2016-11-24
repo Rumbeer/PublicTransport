@@ -7,6 +7,8 @@ namespace BL.Services.Vehicles
 {
     public interface IVehicleService
     {
+        int PageSize { get; }
+
         /// <summary>
         /// Creates vehicle with its seats
         /// </summary>

@@ -257,7 +257,7 @@ namespace ConsoleApp
             routeService.CreateRoute(new RouteDTO
             {
                 Name = "Tylova-Ceska"
-            });  
+            }, companyId);  
             
             stationService.CreateStation(new StationDTO
             {
@@ -432,12 +432,12 @@ namespace ConsoleApp
             routeService.CreateRoute(new RouteDTO
             {
                 Name = "First Route"
-            });
+            }, companyId);
 
             routeService.CreateRoute(new RouteDTO
             {
                 Name = "Second Route"
-            });
+            }, companyId);
 
             routeService.AddRouteStation(4, 2, new RouteStationDTO
             {
