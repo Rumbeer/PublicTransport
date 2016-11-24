@@ -11,7 +11,7 @@ namespace BL.DTOs.Companies
         [MaxLength(256)]
         public string Name { get; set; }
 
-        [Required]
+        [Range(0, double.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public double CostPerKm { get; set; }
 
         public bool RedeemableTicket => this.TimeToRedeem != null;

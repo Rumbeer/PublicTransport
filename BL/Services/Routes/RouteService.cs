@@ -13,29 +13,51 @@ using BL.DTOs.Seats;
 using BL.DTOs.Routes;
 using BL.DTOs.RouteStations;
 using BL.DTOs.Programs;
+using Riganti.Utils.Infrastructure.Core;
 
 namespace BL.Services.Routes
 {
     public class RouteService : AppService, IRouteService
     {
+        public int pageSize => 5;
+
+        #region Dependencies
+
         private readonly RouteRepository routeRepository;
+
         private readonly RoutesStationRepository routeStationRepository;
+
         private readonly ProgramRepository programRepository;
+
         private readonly FindProgramsOfRouteStationQuery findProgramsOfRouteStationQuery;
+
         private readonly RouteStationListQuery routeStationListQuery;
+
         private readonly RouteListQuery routeListQuery;
+
         private readonly CreateSpecificRouteQuery createSpecificRouteQuery;
+
         private readonly StationRepository stationRepository;
+
         private readonly SeatRepository seatRepository;
+
         private readonly SeatListQuery seatListQuery;
+
         private readonly EmptyProgramsListQuery emptyProgramsListQuery;
+
         private readonly RouteListAllQuery routeListAllQuery;
 
-        public RouteService(RouteListAllQuery routeListAllQuery, EmptyProgramsListQuery emptyProgramsListQuery, SeatRepository seatRepository, SeatListQuery seatListQuery, RouteRepository routeRepository, RoutesStationRepository routeStationRepository,
+        private readonly CompanyRepository companyRepository;
+
+        private readonly CompanyRouteListQuery companyRouteListQuery;
+
+        public RouteService(CompanyRouteListQuery companyRouteListQuery, CompanyRepository companyRepository, RouteListAllQuery routeListAllQuery, EmptyProgramsListQuery emptyProgramsListQuery, SeatRepository seatRepository, SeatListQuery seatListQuery, RouteRepository routeRepository, RoutesStationRepository routeStationRepository,
             ProgramRepository programRepository, FindProgramsOfRouteStationQuery findProgramsOfRouteStationQuery,
             RouteStationListQuery routeStationListQuery, RouteListQuery routeListQuery, CreateSpecificRouteQuery createSpecificRouteQuery,
             StationRepository stationRepository)
         {
+            this.companyRouteListQuery = companyRouteListQuery;
+            this.companyRepository = companyRepository;
             this.routeListAllQuery = routeListAllQuery;
             this.emptyProgramsListQuery = emptyProgramsListQuery;
             this.seatRepository = seatRepository;
@@ -50,11 +72,13 @@ namespace BL.Services.Routes
             this.stationRepository = stationRepository;
         }
 
+        #endregion
+
         public void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
-                var route = routeRepository.GetById(routeId, r => r.RouteStations, s => s.RouteStations);
+                var route = routeRepository.GetById(routeId, r => r.RouteStations);
                 createSpecificRouteQuery.RouteId = routeId;
                 var routeStationsTemplates = createSpecificRouteQuery.Execute().ToList();
                 var seatDTOs = ListSeatsOfVehicle(vehicleId);
@@ -97,14 +121,40 @@ namespace BL.Services.Routes
         }
 
         //to do edit - create specific route, delete programs
-        public void CreateRoute(RouteDTO routeDTO)
+        public void CreateRoute(RouteDTO routeDTO, int companyId)
         {
             using (var uow = UnitOfWorkProvider.Create())
             {
                 var route = Mapper.Map<Route>(routeDTO);
+                var company = companyRepository.GetById(companyId, c => c.Routes);
+                route.Company = company;
+                company.Routes.Add(route);
                 routeRepository.Insert(route);
                 uow.Commit();
             }
+        }
+
+        public RouteListQueryResultDTO ListCompanyRoutes(int companyId, int page = 1)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var query = companyRouteListQuery;
+                query.ClearSortCriterias();
+                query.CompanyId = companyId;
+
+                query.Skip = Math.Max(0, page - 1) * pageSize;
+                query.Take = pageSize;
+                query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
+
+                return new RouteListQueryResultDTO
+                {
+                    RequestedPage = page,
+                    TotalResultCount = query.GetTotalRowCount(),
+                    ResultsPage = query.Execute(),
+                    CompanyId = companyId
+                };
+            }
+
         }
 
         public void DeleteStationFromRoute(int routeStationID)

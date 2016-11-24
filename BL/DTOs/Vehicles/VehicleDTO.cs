@@ -11,10 +11,10 @@ namespace BL.DTOs.Vehicles
 
         public string LicencePlate { get; set; }
 
-        [Required]
+        [EnumDataType(typeof(VehicleType), ErrorMessage = "Vehicle type does not exist within this enum")]
         public VehicleType VehicleType { get; set; }
 
-        [Required]
+        [Range(1, int.MaxValue, ErrorMessage = "Please set the value greater than 0")]
         public int SeatCount { get; set; }
     }
 }

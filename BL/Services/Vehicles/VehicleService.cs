@@ -15,7 +15,7 @@ namespace BL.Services.Vehicles
     public class VehicleService : AppService, IVehicleService
     {
         //for tests the page size is 1
-        public int pageSize => 1;
+        public int pageSize => 5;
 
         #region Dependencies
 

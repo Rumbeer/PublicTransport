@@ -80,6 +80,7 @@
     <Compile Include="AppInfrastructure\AppUnitOfWork.cs" />
     <Compile Include="AppInfrastructure\AppUnitOfWorkProvider.cs" />
     <Compile Include="BLInstaller.cs" />
+    <Compile Include="DTOs\Routes\RouteListQueryResultDTO.cs" />
     <Compile Include="Enum\VehicleType.cs" />
     <Compile Include="Enum\DiscountType.cs" />
     <Compile Include="DTOs\Companies\CompanyDTO.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Mapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\CompanyListQuery.cs" />
+    <Compile Include="Queries\CompanyRouteListQuery.cs" />
     <Compile Include="Queries\CreateSpecificRouteQuery.cs" />
     <Compile Include="Queries\CustomerListAllQuery.cs" />
     <Compile Include="Queries\CustomerListQuery.cs" />

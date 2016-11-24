@@ -31,5 +31,7 @@ namespace DAL.Entities
         public virtual List<Discount> Discounts { get; set; }
 
         public virtual List<Ticket> Tickets { get; set; }
+
+        public virtual List<Route> Routes { get; set; }
     }
 }

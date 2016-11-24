@@ -13,7 +13,7 @@ namespace BL.DTOs.RouteStations
 
         public DateTime? DepartFromFirstStation { get; set; }
 
-        public TimeSpan Delay { get; set; }
+        public TimeSpan? Delay { get; set; }
 
         //zo stanice do dalsej
         [Required]
@@ -22,6 +22,7 @@ namespace BL.DTOs.RouteStations
         [Required]
         public TimeSpan TimeFromFirstStation { get; set; }
 
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public int Order { get; set; }
 
         [Required]

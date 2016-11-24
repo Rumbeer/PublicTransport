@@ -14,6 +14,7 @@ namespace BL.DTOs.Customers
         public string LastName { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }

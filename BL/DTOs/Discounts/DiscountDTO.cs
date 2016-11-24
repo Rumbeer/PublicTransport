@@ -6,11 +6,13 @@ namespace BL.DTOs.Discounts
     public class DiscountDTO
     {
         public int ID { get; set; }
+
         [Range(0, 100)]
-        [Required]
         public int Value { get; set; }
-        [Required]
+
+        [EnumDataType(typeof(DiscountType), ErrorMessage = "Discount type does not exist within this enum")]
         public DiscountType DiscountType { get; set; }
+
         [MaxLength(15)]
         public string Code { get; set; }
     }
