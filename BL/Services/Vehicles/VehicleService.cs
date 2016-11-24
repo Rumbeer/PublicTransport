@@ -15,7 +15,7 @@ namespace BL.Services.Vehicles
     public class VehicleService : AppService, IVehicleService
     {
         //for tests the page size is 1
-        public int pageSize => 5;
+        public int PageSize => 5;
 
         #region Dependencies
 
@@ -81,8 +81,8 @@ namespace BL.Services.Vehicles
                 query.ClearSortCriterias();
                 query.Filter = filter;
 
-                query.Skip = Math.Max(0, page - 1) * pageSize;
-                query.Take = pageSize;
+                query.Skip = Math.Max(0, page - 1) * PageSize;
+                query.Take = PageSize;
                 query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
 
                 return new VehicleListQueryResultDTO

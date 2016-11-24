@@ -22,15 +22,21 @@ namespace BL.Facades
             this.stationService = stationService;
         }
 
+        public int RoutePageSize => routeService.PageSize;
 
         public void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId)
         {
             routeService.CreateSpecificRoute(routeId, departTime, vehicleId);
         }
 
-        public void CreateRoute(RouteDTO routeDTO)
+        public void CreateRoute(RouteDTO routeDTO, int companyId)
         {
-            routeService.CreateRoute(routeDTO);
+            routeService.CreateRoute(routeDTO, companyId);
+        }
+
+        public void DeleteRoute(int routeId)
+        {
+            routeService.DeleteRoute(routeId);
         }
 
         public void DeleteStationFromRoute(int routeStationID)
@@ -38,7 +44,12 @@ namespace BL.Facades
             routeService.DeleteStationFromRoute(routeStationID);
         }
 
-        public List<RouteStationDTO> getRouteStationsByRoute(int routeId)
+        public RouteListQueryResultDTO ListCompanyRoutes(int companyId, int page = 1)
+        {
+            return routeService.ListCompanyRoutes(companyId, page);
+        }
+
+        public List<RouteStationDTO> GetRouteStationsByRoute(int routeId)
         {
             return routeService.GetRouteStationsByRoute(routeId);
         }

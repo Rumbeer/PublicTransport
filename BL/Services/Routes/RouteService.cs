@@ -19,7 +19,7 @@ namespace BL.Services.Routes
 {
     public class RouteService : AppService, IRouteService
     {
-        public int pageSize => 5;
+        public int PageSize => 5;
 
         #region Dependencies
 
@@ -142,9 +142,9 @@ namespace BL.Services.Routes
                 query.ClearSortCriterias();
                 query.CompanyId = companyId;
 
-                query.Skip = Math.Max(0, page - 1) * pageSize;
-                query.Take = pageSize;
-                query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
+                query.Skip = Math.Max(0, page - 1) * PageSize;
+                query.Take = PageSize;
+                query.AddSortCriteria("Name", SortDirection.Ascending);
 
                 return new RouteListQueryResultDTO
                 {

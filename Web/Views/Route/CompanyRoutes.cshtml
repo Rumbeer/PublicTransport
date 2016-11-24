@@ -1,0 +1,41 @@
+﻿@model Web.Models.RouteListModel
+@using X.PagedList.Mvc
+@using X.PagedList
+@using System.Web.Mvc.Html
+@using System.Linq
+@using BL.DTOs.Routes
+
+@{
+    ViewBag.Title = "CompanyRoutes";
+}
+
+<h2>CompanyRoutes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRoute", new { companyId = Model.CompanyId})
+</p>
+
+
+
+<table class="table">
+    <th>
+        @Html.DisplayName("Route Name")
+    </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Routes)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new { routeId = item.ID, companyId = Model.CompanyId })
+            </td>
+        </tr>
+    }
+</table>
+<div class="col-md-12">
+    @Html.PagedListPager(Model.Routes, page => Url.Action("CompanyRoutes", new { Model.CompanyId, page }))
+</div>

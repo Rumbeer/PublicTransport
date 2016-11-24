@@ -78,6 +78,11 @@
     @Html.ActionLink("Vehicles", "CompanyVehicles")
 </p>
 
+<p>
+    @Html.ActionLink("Routes", "CompanyRoutes", "Route", new { companyId = Model.Company.ID }, null)
+</p>
+
+
 
 <p>
     @Html.ActionLink("Back to List", "ListAllCompanies")

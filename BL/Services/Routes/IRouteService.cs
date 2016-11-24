@@ -9,6 +9,8 @@ namespace BL.Services.Routes
 {
     public interface IRouteService
     {
+        int PageSize { get; }
+
         void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId);
 
         void CreateRoute(RouteDTO routeDTO, int companyId);

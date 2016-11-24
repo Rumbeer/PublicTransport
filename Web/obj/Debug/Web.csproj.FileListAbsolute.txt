@@ -198,3 +198,11 @@ C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\DAL.pdb
 C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Riganti.Utils.Infrastructure.EntityFramework.pdb
 C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\BrockAllen.MembershipReboot.Ef.pdb
 C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\BrockAllen.MembershipReboot.pdb
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\X.PagedList.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\X.PagedList.Mvc.dll
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.xml
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\Pepa\Documents\GitHub\PublicTransport\Web\bin\Microsoft.Threading.Tasks.Extensions.Desktop.xml

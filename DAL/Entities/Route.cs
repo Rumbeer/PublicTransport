@@ -16,8 +16,7 @@ namespace DAL.Entities
         [MaxLength(256)]
         public string Name { get; set; }
 
-        [Required]
-        public Company Company { get; set; }
+        public virtual Company Company { get; set; }
 
         public virtual List<RouteStation> RouteStations { get; set; }
 
