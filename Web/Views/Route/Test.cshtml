@@ -1,0 +1,49 @@
+﻿@model Web.Models.TestModel
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+@foreach (var str in Model.List)
+{
+    @Html.Display(str)
+}
+<p id="demo">
+
+    </p>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("PostID", Model.Add)
+    @Html.HiddenFor(model => Model.Add)
+
+    <div class="form-horizontal">
+        <h4>VehicleDTO</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" id="save" class="btn btn-default" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" id="not" class="btn btn-default" hidden="hidden"/>
+            </div>
+        </div>
+    </div>
+<button type="button"
+        onclick="func()">
+    a
+</button>
+
+}
+<script>
+    function func() {
+        document.getElementById('PostID').value = 1;
+        document.getElementById('not').click();
+    }
+</script>

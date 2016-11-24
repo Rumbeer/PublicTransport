@@ -140,7 +140,7 @@ namespace BL.Facades
         /// </summary>
         /// <param name="vehicleDto">vehicle details</param>
         /// <param name="companyId">id of company</param>
-        void CreateVehicle(VehicleDTO vehicleDto, int companyId)
+        public void CreateVehicle(VehicleDTO vehicleDto, int companyId)
         {
             vehicleService.CreateVehicle(vehicleDto, companyId);
         }
@@ -151,7 +151,7 @@ namespace BL.Facades
         /// <param name="filter">vehicle filter</param>
         /// <param name="page">requested page</param>
         /// <returns></returns>
-        VehicleListQueryResultDTO ListVehicles(VehicleFilter filter, int page = 1)
+        public VehicleListQueryResultDTO ListVehicles(VehicleFilter filter, int page = 1)
         {
             return vehicleService.ListVehicles(filter, page);
         }
@@ -161,7 +161,7 @@ namespace BL.Facades
         /// </summary>
         /// <param name="vehicleId">id of a vehicle</param>
         /// <returns></returns>
-        VehicleDTO GetVehicleById(int vehicleId)
+        public VehicleDTO GetVehicleById(int vehicleId)
         {
             return vehicleService.GetVehicleById(vehicleId);
         }
@@ -171,7 +171,7 @@ namespace BL.Facades
         /// </summary>
         /// <param name="licencePlate">licence plate of a vehicle</param>
         /// <returns></returns>
-        int GetVehicleIdByLicencePlate(string licencePlate)
+        public int GetVehicleIdByLicencePlate(string licencePlate)
         {
             return vehicleService.GetVehicleIdByLicencePlate(licencePlate);
         }
@@ -180,7 +180,7 @@ namespace BL.Facades
         /// Deletes vehicle
         /// </summary>
         /// <param name="vehicleId"> id of vehicle to be deleted</param>
-        void DeleteVehicle(int vehicleId)
+        public void DeleteVehicle(int vehicleId)
         {
             vehicleService.DeleteVehicle(vehicleId);
         }
@@ -190,7 +190,7 @@ namespace BL.Facades
         /// </summary>
         /// <param name="vehicleId">id of vehicle</param>
         /// <returns></returns>
-        IEnumerable<SeatDTO> GetVehicleSeats(int vehicleId)
+        public IEnumerable<SeatDTO> GetVehicleSeats(int vehicleId)
         {
             return GetVehicleSeats(vehicleId);
         }

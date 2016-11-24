@@ -1,9 +1,6 @@
 ﻿using BL.DTOs.Routes;
 using BL.Facades;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Web.Models;
 using X.PagedList;
@@ -49,6 +46,27 @@ namespace Web.Controllers
         {
             RouteFacade.DeleteRoute(routeId);
             return RedirectToAction("CompanyRoutes", companyId);
+        }
+
+        public ActionResult Test()
+        {
+            var model = new TestModel
+            {
+                Add = 2,
+                List = new List<string>()
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Test(TestModel model)
+        {
+            if (model.Add == 1)
+            {
+                model.List.Add("ahoj");
+                return View(model);
+            }
+            return RedirectToAction("Home", "Index", "Home");
         }
 
         private RouteListModel GetProductListModel(RouteListQueryResultDTO result)
