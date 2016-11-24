@@ -8,11 +8,12 @@
 
 <h2>CreateRouteTemplate</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @foreach (var template in Model)
+    foreach (var template in Model)
     {
+        @Html.HiddenFor(model => template)
         <div class="form-horizontal">
             <h4>CreateRouteTemplatesModel</h4>
             <hr />
@@ -71,5 +72,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "CompanyRoutes", new { companyId = Model.FirstOrDefault().CompanyId })
 </div>

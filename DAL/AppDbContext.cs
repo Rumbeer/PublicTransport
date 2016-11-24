@@ -10,16 +10,16 @@ using Riganti.Utils.Infrastructure.EntityFramework;
 
 namespace DAL
 {
-    public class AppDbContext2 : DbContext
+    public class AppDbContext : DbContext
     {
         #region Ctors
 
-        public AppDbContext2() : base()
+        public AppDbContext() : base()
         {
             //InitializeDbContext();
         }
 
-        public AppDbContext2(string connectionName) : base(connectionName)
+        public AppDbContext(string connectionName) : base(connectionName)
         {
             //InitializeDbContext();
         }

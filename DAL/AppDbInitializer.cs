@@ -8,9 +8,9 @@ using DAL.Entities;
 
 namespace DAL
 {
-    public class AppDbInitializer : DropCreateDatabaseAlways<AppDbContext2>
+    public class AppDbInitializer : DropCreateDatabaseAlways<AppDbContext>
     {
-        public override void InitializeDatabase(AppDbContext2 context)
+        public override void InitializeDatabase(AppDbContext context)
         {
             base.InitializeDatabase(context);
         }

@@ -96,34 +96,34 @@ namespace Web.Controllers
                 template.RouteStation.TimeToNextStation = TimeSpan.Parse(template.TimeToNextStation);
                 RouteFacade.AddRouteStation(station.FirstOrDefault().ID, template.RouteId, template.RouteStation);
             }
-            return RedirectToAction("")
+            return RedirectToAction("CompanyRoutes", new { companyId = model.FirstOrDefault().CompanyId });
         }
         
-        public ActionResult Test()
-        {
-            var model = new List<TestModel>() {
-                new TestModel
-            {
-                List = null
-            } };
-            return View(model);
-        }
-
-        [HttpPost]
-        public ActionResult Test(List<TestModel> model)
-        {
-                model.Add(new TestModel { List = "ahoj" });
-                return View(model);
-            return RedirectToAction("Home", "Index", "Home");
-        }
-        
-        public ActionResult Test2(List<TestModel> model)
-        {
-
-            model.Add(new TestModel { List = "ahoj" });
-            return View(model);
-            return RedirectToAction("Home", "Index", "Home");
-        }
+//        public ActionResult Test()
+//        {
+//            var model = new List<TestModel>() {
+//                new TestModel
+//            {
+//                List = null
+//            } };
+//            return View(model);
+//        }
+//
+//        [HttpPost]
+//        public ActionResult Test(List<TestModel> model)
+//        {
+//                model.Add(new TestModel { List = "ahoj" });
+//                return View(model);
+//            return RedirectToAction("Home", "Index", "Home");
+//        }
+//        
+//        public ActionResult Test2(List<TestModel> model)
+//        {
+//
+//            model.Add(new TestModel { List = "ahoj" });
+//            return View(model);
+//            return RedirectToAction("Home", "Index", "Home");
+//        }
 
         private RouteListModel GetProductListModel(RouteListQueryResultDTO result)
         {
