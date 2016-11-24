@@ -22,7 +22,10 @@ namespace BL
             Mapper.Initialize(config =>
             {
                 config.CreateMap<Company, CompanyDTO>().ReverseMap();
-                config.CreateMap<Vehicle, VehicleDTO>().ReverseMap();
+                config.CreateMap<Vehicle, VehicleDTO>()
+                    .ForMember(dest => dest.VehicleType, option => option.MapFrom(vehicle => (BL.Enum.VehicleType)vehicle.VehicleType))
+                    .ReverseMap();
+
                 config.CreateMap<Seat, SeatDTO>().ReverseMap();
                 config.CreateMap<Customer, CustomerDTO>().ReverseMap();
                 config.CreateMap<Discount, DiscountDTO>()

@@ -75,7 +75,7 @@
     }
 </table>
 <p>
-    @Html.ActionLink("Vehicles", "CompanyVehicles")
+    @Html.ActionLink("Vehicles", "CompanyVehicles", "Vehicle", new { companyId = Model.Company.ID }, null)
 </p>
 
 <p>

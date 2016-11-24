@@ -231,6 +231,8 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\SpecificRouteController.cs" />
+    <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -240,9 +242,12 @@
     <Compile Include="Models\CompanyDetailsModel.cs" />
     <Compile Include="Models\CreateDiscountModel.cs" />
     <Compile Include="Models\CreateSpecificRouteModel.cs" />
+    <Compile Include="Models\CreateVehicleModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RouteListModel.cs" />
+    <Compile Include="Models\TestModel.cs" />
+    <Compile Include="Models\VehicleListModel.cs" />
     <Compile Include="MvcInstaller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -318,7 +323,11 @@
     <Content Include="Views\Company\EditDiscount.cshtml" />
     <Content Include="Views\Route\CompanyRoutes.cshtml" />
     <Content Include="Views\Route\CreateRoute.cshtml" />
-    <Content Include="Views\Route\CreateRoutesdf.cshtml" />
+    <Content Include="Views\Station\Index.cshtml" />
+    <Content Include="Views\Station\CreateStation.cshtml" />
+    <Content Include="Views\Vehicle\CompanyVehicles.cshtml" />
+    <Content Include="Views\Vehicle\CreateVehicle.cshtml" />
+    <Content Include="Views\Route\Test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

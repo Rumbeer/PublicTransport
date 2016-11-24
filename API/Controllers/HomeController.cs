@@ -10,7 +10,7 @@ namespace API.Controllers
     {
         public string Index()
         {
-            return "Sample API calls (via Postman) are available at API(project)/Test/DemoEshopRatingAPI.postman_collection";
+            return "API Home";
         }
     }
 }

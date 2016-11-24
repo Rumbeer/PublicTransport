@@ -9,6 +9,7 @@ using BL.DTOs.RouteStations;
 using BL.DTOs.Routes;
 using BL.Services.Stations;
 using BL.DTOs.Stations;
+using BL.DTOs.Filters;
 
 namespace BL.Facades
 {
@@ -89,9 +90,15 @@ namespace BL.Facades
             return stationService.GetAllStationsByTown(town);
         }
 
+
         public string GetStationNameByRouteStation(int routeStationId)
         {
             return stationService.GetStationNameByRouteStation(routeStationId);
+        }
+
+        public List<StationDTO> GetAllStationsByFilter(StationFilter filter)
+        {
+            return stationService.GetStationsByFilter(filter);
         }
     }
 }
