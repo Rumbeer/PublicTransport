@@ -62,7 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppDbContext.cs" />
+    <Compile Include="AppDbContext2.cs" />
     <Compile Include="AppDbInitializer.cs" />
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\Customer.cs" />

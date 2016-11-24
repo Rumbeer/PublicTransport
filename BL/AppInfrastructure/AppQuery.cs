@@ -6,7 +6,7 @@ namespace BL.AppInfrastructure
 {
     public abstract class AppQuery<T> : EntityFrameworkQuery<T>
     {
-        public new AppDbContext Context => (AppDbContext)base.Context;
+        public new AppDbContext2 Context => (AppDbContext2)base.Context;
 
         protected AppQuery(IUnitOfWorkProvider provider) : base(provider)
         {
