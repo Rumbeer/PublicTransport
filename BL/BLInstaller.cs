@@ -19,7 +19,7 @@ namespace BL
             container.Register(
 
                 Component.For<Func<DbContext>>()
-                    .Instance(() => new AppDbContext())
+                    .Instance(() => new AppDbContext2())
                     .LifestyleTransient(),
 
                 Component.For<IUnitOfWorkProvider>()

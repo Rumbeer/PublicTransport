@@ -20,5 +20,7 @@ namespace BL.Services.Stations
         List<StationDTO> GetAllStationsByTown(string town);
 
         List<StationDTO> GetStationsByFilter(StationFilter filter);
+
+        string GetStationNameByRouteStation(int routeStationId);
     }
 }

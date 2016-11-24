@@ -69,7 +69,7 @@ namespace ConsoleApp
             }
 
             companyId = companyService.GetCompanyIdByName("b");
-            CompanyServiceTest();
+            /*CompanyServiceTest();
             Console.WriteLine();
             VehicleServiceTest();
             Console.WriteLine();
@@ -79,7 +79,8 @@ namespace ConsoleApp
             Console.WriteLine();
             StationServiceTest();
             Console.WriteLine();
-            TicketServiceTest();
+            TicketServiceTest();*/
+            FindRouteTest();
 
             companyService.DeleteCompany(companyId);
         }
@@ -404,67 +405,67 @@ namespace ConsoleApp
         //data are not deleted, depends on specific id
         private static void FindRouteTest()
         {
-            stationService = Container.Resolve<IStationService>();
-            routeService = Container.Resolve<IRouteService>();
-            vehicleService = Container.Resolve<IVehicleService>();
-            companyService = Container.Resolve<ICompanyService>();
-            stationService.CreateStation(new StationDTO
+            try
             {
-                Name = "Ceska",
-                Town = "Brno"
-            });
-            stationService.CreateStation(new StationDTO
-            {
-                Name = "Hlavni",
-                Town = "Brno"
-            });
-            stationService.CreateStation(new StationDTO
-            {
-                Name = "Olomoucka",
-                Town = "Brno"
-            });
-            stationService.CreateStation(new StationDTO
-            {
-                Name = "Klusackova",
-                Town = "Brno"
-            });
+                stationService = Container.Resolve<IStationService>();
+                routeService = Container.Resolve<IRouteService>();
+                vehicleService = Container.Resolve<IVehicleService>();
+                companyService = Container.Resolve<ICompanyService>();
+                stationService.CreateStation(new StationDTO
+                {
+                    Name = "Ceska",
+                    Town = "Brno"
+                });
+                stationService.CreateStation(new StationDTO
+                {
+                    Name = "Hlavni",
+                    Town = "Brno"
+                });
+                stationService.CreateStation(new StationDTO
+                {
+                    Name = "Olomoucka",
+                    Town = "Brno"
+                });
+                stationService.CreateStation(new StationDTO
+                {
+                    Name = "Klusackova",
+                    Town = "Brno"
+                });
 
-            routeService.CreateRoute(new RouteDTO
-            {
-                Name = "First Route"
-            }, companyId);
+                routeService.CreateRoute(new RouteDTO
+                {
+                    Name = "First Route"
+                }, companyId);
 
-            routeService.CreateRoute(new RouteDTO
-            {
-                Name = "Second Route"
-            }, companyId);
+                routeService.CreateRoute(new RouteDTO
+                {
+                    Name = "Second Route"
+                }, companyId);
 
-            routeService.AddRouteStation(4, 2, new RouteStationDTO
-            {
-                DepartFromFirstStation = DateTime.Today,
-                DistanceFromPreviousStation = 2,
-                TimeFromFirstStation = new TimeSpan(0, 5, 0),
-                TimeToNextStation = new TimeSpan(0, 0, 0),
-                Order = 1
-            });
 
-            routeService.AddRouteStation(5, 2, new RouteStationDTO
+                var route = routeService.ListAllRoutes().Last();
+                var stations = stationService.GetAllStationsByTown("Brno");
+                int order = 1;
+
+                foreach (var station in stations)
+                {
+                    routeService.AddRouteStation(station.ID, route.ID, new RouteStationDTO
+                    {
+                        DepartFromFirstStation = DateTime.Today,
+                        DistanceFromPreviousStation = 2,
+                        TimeFromFirstStation = new TimeSpan(0, 5, 0),
+                        TimeToNextStation = new TimeSpan(0, 0, 0),
+                        Order = order
+                    });
+                    order++;
+                }
+            }
+            catch(ArgumentException e)
             {
-                DepartFromFirstStation = DateTime.Today,
-                DistanceFromPreviousStation = 2,
-                TimeFromFirstStation = new TimeSpan(0, 5, 0),
-                TimeToNextStation = new TimeSpan(0, 0, 0),
-                Order = 2
-            });
-            routeService.AddRouteStation(6, 2, new RouteStationDTO
-            {
-                DepartFromFirstStation = DateTime.Today,
-                DistanceFromPreviousStation = 2,
-                TimeFromFirstStation = new TimeSpan(0, 5, 0),
-                TimeToNextStation = new TimeSpan(0, 0, 0),
-                Order = 3
-            });
-            routeService.FindRoutesWithStations(1, 3, DateTime.Today);
+                Console.WriteLine(e.Message);
+            }
+            
+            //routeService.FindRoutesWithStations(1, 3, DateTime.Today);
         }
 
         private static void InitializeWindsorContainerAndMapper()

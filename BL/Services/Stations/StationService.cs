@@ -99,5 +99,22 @@ namespace BL.Services.Stations
                 return stationListQuery.Execute().ToList();
             }
         }
+
+        public string GetStationNameByRouteStation(int routeStationId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                stationListQuery.Filter = new StationFilter
+                {
+                    RouteStationId = routeStationId
+                };
+                var station = stationListQuery.Execute().ToList().FirstOrDefault();
+                if (station != null)
+                {
+                    return station.Name;
+                }
+                return null;
+            }
+        }
     }
 }

@@ -32,6 +32,10 @@ namespace BL.Queries
             {
                 query = query.Where(station => station.Name == Filter.Name);
             }
+            if (Filter.RouteStationId.HasValue)
+            {
+                query = query.Where(station => station.ID == Filter.RouteStationId);
+            }
 
             return query.ProjectTo<StationDTO>();
         }
