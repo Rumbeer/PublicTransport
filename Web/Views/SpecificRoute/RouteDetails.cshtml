@@ -1,0 +1,69 @@
+﻿@using Web.Models
+
+@model RouteDetailsModel
+
+@{
+    ViewBag.Title = "RouteDetails";
+}
+
+<h2>RouteDetails</h2>
+
+<p>
+    @Html.ActionLink("Add new depart time", "CreateSpecificRoute", new { companyId = Model.CompanyId, routeId = Model.RouteId})
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Templates.TimeToNextStation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Templates.TimeFromFirstStation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Templates.Order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Templates.DistanceFromPreviousStation)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Templates)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeToNextStation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeFromFirstStation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DistanceFromPreviousStation)
+            </td>
+        </tr>
+    }
+</table>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayName("Depart times")
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model.DepartTimes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item)
+                </td>
+            </tr>
+        }
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "CompanyRoutes", "Route", new { companyId = Model.CompanyId }, null)
+</div>

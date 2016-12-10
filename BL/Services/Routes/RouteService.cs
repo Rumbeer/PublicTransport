@@ -74,6 +74,27 @@ namespace BL.Services.Routes
 
         #endregion
 
+        public List<RouteStationDTO> GetRouteTemplate(int routeId)
+        {
+            createSpecificRouteQuery.RouteId = routeId;
+            return createSpecificRouteQuery.Execute().ToList().OrderBy(r => r.Order).ToList();
+        }
+
+        public List<DateTime> GetRouteDepartTimes(int routeId)
+        {
+            var routeStations = GetRouteStationsByRoute(routeId);
+            var result = new List<DateTime>();
+            foreach(var routeStation in routeStations)
+            {
+                if(routeStation.DepartFromFirstStation != null && !result.Contains(routeStation.DepartFromFirstStation.GetValueOrDefault()))
+                {
+                    result.Add(routeStation.DepartFromFirstStation.GetValueOrDefault());
+                }
+            }
+            result.Sort();
+            return result;
+        }
+
         public void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId)
         {
             using (var uow = UnitOfWorkProvider.Create())

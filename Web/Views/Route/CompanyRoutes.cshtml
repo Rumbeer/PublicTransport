@@ -13,7 +13,7 @@
 </p>
 
 
-
+@Html.HiddenFor(model => model.CompanyId)
 <table class="table">
     <th>
         @Html.DisplayName("Route Name")
@@ -28,7 +28,16 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.ActionLink("Delete", "DeleteRoute", new { routeId = item.ID, companyId = Model.CompanyId }) | 
+                @Html.ActionLink("Delete", "DeleteRoute", new { routeId = item.ID, companyId = Model.CompanyId }) |
+                @if (!Model.HasTemplate[item.ID])
+                {
+                    @Html.ActionLink("Create Template", "GetStationCountForRouteTemplate", new { companyId = Model.CompanyId, routeId = item.ID })
+                }
+                else
+                {
+                    @Html.ActionLink("Route Details", "RouteDetails", "SpecificRoute", new { companyId = Model.CompanyId, routeId = item.ID }, null)
+                }
+
             </td>
         </tr>
     }

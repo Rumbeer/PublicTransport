@@ -25,9 +25,21 @@ namespace Web.Controllers
 
         public ActionResult CompanyRoutes(int companyId, int page = 1)
         {
-            var result = RouteFacade.ListCompanyRoutes(companyId, page);
+            var routes = RouteFacade.ListCompanyRoutes(companyId, page);
+            var model = GetProductListModel(routes);
 
-            var model = GetProductListModel(result);
+            model.HasTemplate = new Dictionary<int, bool>(); 
+            foreach (var route in routes.ResultsPage)
+            {
+                if(RouteFacade.GetRouteStationsByRoute(route.ID).Count == 0)
+                {
+                    model.HasTemplate.Add(route.ID, false);
+                }
+                else
+                {
+                    model.HasTemplate.Add(route.ID, true);
+                }
+            }
 
             return View(model);
         }
@@ -88,12 +100,54 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult CreateRouteTemplate(List<CreateRouteTemplatesModel> model)
         {
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            string format = "g";
+            TimeSpan timeFromFirstStation, timeToNextStation;
+            CultureInfo  culture = CultureInfo.CurrentCulture;
+            var isOrderValid = new bool[model.Count + 1];
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            foreach (var template in model)
+            {
+                if(template.RouteStation.Order > 0 && template.RouteStation.Order < isOrderValid.Count())
+                {
+                    isOrderValid[template.RouteStation.Order] = true;
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid order";
+                    return View(model);
+                }
+            }
+            for( int i = 1; i < isOrderValid.Count(); i++)
+            {
+                if (!isOrderValid[i])
+                {
+                    ViewBag.Message = "Invalid order";
+                    return View(model);
+                }
+            }
+
             foreach (var template in model)
             {
                 var station = RouteFacade.GetAllStationsByFilter(new StationFilter { Name = template.StationName, Town = template.StationTown });
-                template.RouteStation.TimeFromFirstStation = TimeSpan.Parse(template.TimeFromFirstStation);
-                template.RouteStation.TimeToNextStation = TimeSpan.Parse(template.TimeToNextStation);
+                if(station.Any())
+                {
+                    ViewBag.Message = "Station (Name: " + template.StationName + " Town: " + template.StationTown + ") not found";
+                    return View(model);
+                }               
+                if(TimeSpan.TryParseExact(template.TimeFromFirstStation, format, culture, out timeFromFirstStation) &&
+                    TimeSpan.TryParseExact(template.TimeToNextStation, format, culture, out timeToNextStation))
+                {
+                    template.RouteStation.TimeFromFirstStation = timeFromFirstStation;
+                    template.RouteStation.TimeToNextStation = timeToNextStation;
+                }
+                else
+                {
+                    ViewBag.Message = "Invalid time format";
+                    return View(model);
+                }
                 RouteFacade.AddRouteStation(station.FirstOrDefault().ID, template.RouteId, template.RouteStation);
             }
             return RedirectToAction("CompanyRoutes", new { companyId = model.FirstOrDefault().CompanyId });
@@ -125,12 +179,13 @@ namespace Web.Controllers
 //            return RedirectToAction("Home", "Index", "Home");
 //        }
 
-        private RouteListModel GetProductListModel(RouteListQueryResultDTO result)
+        private RouteListModel GetProductListModel(RouteListQueryResultDTO routes)
         {
             return new RouteListModel
             {
-                CompanyId = result.CompanyId,
-                Routes = new StaticPagedList<RouteDTO>(result.ResultsPage, result.RequestedPage, RouteFacade.RoutePageSize, result.TotalResultCount)
+                CompanyId = routes.CompanyId,
+                HasTemplate = new Dictionary<int, bool>(),
+                Routes = new StaticPagedList<RouteDTO>(routes.ResultsPage, routes.RequestedPage, RouteFacade.RoutePageSize, routes.TotalResultCount)
             };
         } 
     }

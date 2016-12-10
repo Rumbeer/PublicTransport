@@ -29,7 +29,7 @@ namespace BL.Services.Vehicles
         /// </summary>
         /// <param name="vehicleId">id of a vehicle</param>
         /// <returns></returns>
-        VehicleDTO GetVehicleById(int vehicleId);
+        VehicleDTO GetVehicleById(int vehicleId, int? companyId);
 
         /// <summary>
         /// Gets id of vehicle by licence plate

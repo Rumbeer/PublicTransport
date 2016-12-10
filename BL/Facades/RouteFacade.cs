@@ -100,5 +100,15 @@ namespace BL.Facades
         {
             return stationService.GetStationsByFilter(filter);
         }
+
+        public List<RouteStationDTO> GetRouteTemplate(int routeId)
+        {
+            return routeService.GetRouteTemplate(routeId);
+        }
+
+        public List<DateTime> GetRouteDepartTimes(int routeId)
+        {
+            return routeService.GetRouteDepartTimes(routeId);
+        }
     }
 }

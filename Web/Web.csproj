@@ -246,6 +246,7 @@
     <Compile Include="Models\CreateVehicleModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RouteDetailsModel.cs" />
     <Compile Include="Models\RouteListModel.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\VehicleListModel.cs" />
@@ -331,10 +332,11 @@
     <Content Include="Views\Route\Test.cshtml" />
     <Content Include="Views\Route\GetStationCountForRouteTemplate.cshtml" />
     <Content Include="Views\Route\CreateRouteTemplate.cshtml" />
+    <Content Include="Views\SpecificRoute\CreateSpecificRoute.cshtml" />
+    <Content Include="Views\SpecificRoute\RouteDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\SpecificRoute\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -95,11 +95,18 @@ namespace BL.Services.Vehicles
             }
         }
 
-        public VehicleDTO GetVehicleById(int vehicleId)
+        public VehicleDTO GetVehicleById(int vehicleId, int ?companyId)
         {
             using (UnitOfWorkProvider.Create())
             {
-                var vehicle = vehicleRepository.GetById(vehicleId);
+                var vehicle = vehicleRepository.GetById(vehicleId, v => v.Company);
+                if(companyId != null)
+                {
+                    if(vehicle.Company.ID != companyId)
+                    {
+                        return null;
+                    }
+                }
                 return vehicle != null ? Mapper.Map<VehicleDTO>(vehicle) : null;
             }
         }

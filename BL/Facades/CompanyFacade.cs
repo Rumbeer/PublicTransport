@@ -161,9 +161,9 @@ namespace BL.Facades
         /// </summary>
         /// <param name="vehicleId">id of a vehicle</param>
         /// <returns></returns>
-        public VehicleDTO GetVehicleById(int vehicleId)
+        public VehicleDTO GetVehicleById(int vehicleId, int? companyId)
         {
-            return vehicleService.GetVehicleById(vehicleId);
+            return vehicleService.GetVehicleById(vehicleId, companyId);
         }
 
         /// <summary>

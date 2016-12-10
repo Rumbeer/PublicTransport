@@ -11,6 +11,10 @@ namespace BL.Services.Routes
     {
         int PageSize { get; }
 
+        List<DateTime> GetRouteDepartTimes(int routeId);
+
+        List<RouteStationDTO> GetRouteTemplate(int routeId);
+
         void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId);
 
         void CreateRoute(RouteDTO routeDTO, int companyId);
