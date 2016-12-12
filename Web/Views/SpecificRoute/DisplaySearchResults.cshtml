@@ -54,7 +54,7 @@
                     @Html.DisplayFor(modelItem => arrivalTime)
                 </td>
                 <td>
-                    @Html.ActionLink("Order Ticket", "OrderTicket", "Ticket", new { departRouteStationId = item.Item1.ID, arrivalRouteStationId = item.Item2.ID }, null)
+                    @Html.ActionLink("Order Ticket", "EmptySeats", "Ticket", new { departRouteStationId = item.Item1.ID, arrivalRouteStationId = item.Item2.ID }, null)
                 </td>
                 <th> </th>
             </tr>

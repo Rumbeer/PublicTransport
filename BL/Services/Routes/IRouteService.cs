@@ -49,5 +49,7 @@ namespace BL.Services.Routes
         /// <param name="to">id of last RouteStations</param>
         /// <returns></returns>
         int[] GetRouteStationsBetween(int from, int to);
+
+        int GetSeatNumberFromProgram(int programId);
     }
 }

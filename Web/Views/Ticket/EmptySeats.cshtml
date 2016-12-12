@@ -1,0 +1,14 @@
+﻿@model Web.Models.EmptySeatsModel
+
+@{
+    ViewBag.Title = "EmptySeats";
+}
+
+<h2>Choose seat</h2>
+
+@for(int i = 1; i <= Model.Programs.Keys.Count; i++)
+{
+    <p>
+        @Html.ActionLink(i.ToString(), "Recap", new { seatNumber = i})
+    </p>
+}

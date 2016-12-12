@@ -245,6 +245,7 @@
     <Compile Include="Models\CreateRouteTemplatesModel.cs" />
     <Compile Include="Models\CreateSpecificRouteModel.cs" />
     <Compile Include="Models\CreateVehicleModel.cs" />
+    <Compile Include="Models\EmptySeatsModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RouteDetailsModel.cs" />
@@ -339,10 +340,10 @@
     <Content Include="Views\SpecificRoute\RouteDetails.cshtml" />
     <Content Include="Views\SpecificRoute\Search.cshtml" />
     <Content Include="Views\SpecificRoute\DisplaySearchResults.cshtml" />
+    <Content Include="Views\Ticket\EmptySeats.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

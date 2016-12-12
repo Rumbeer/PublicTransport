@@ -52,11 +52,14 @@ namespace BL.Services.Routes
 
         private readonly CompanyRouteListQuery companyRouteListQuery;
 
-        public RouteService(CompanyRouteListQuery companyRouteListQuery, CompanyRepository companyRepository, RouteListAllQuery routeListAllQuery, EmptyProgramsListQuery emptyProgramsListQuery, SeatRepository seatRepository, SeatListQuery seatListQuery, RouteRepository routeRepository, RoutesStationRepository routeStationRepository,
+        private readonly RouteStationForBetweenQuery routeStationForBetweenQuery;
+
+        public RouteService(RouteStationForBetweenQuery routeStationForBetweenQuery, CompanyRouteListQuery companyRouteListQuery, CompanyRepository companyRepository, RouteListAllQuery routeListAllQuery, EmptyProgramsListQuery emptyProgramsListQuery, SeatRepository seatRepository, SeatListQuery seatListQuery, RouteRepository routeRepository, RoutesStationRepository routeStationRepository,
             ProgramRepository programRepository, FindProgramsOfRouteStationQuery findProgramsOfRouteStationQuery,
             RouteStationListQuery routeStationListQuery, RouteListQuery routeListQuery, CreateSpecificRouteQuery createSpecificRouteQuery,
             StationRepository stationRepository)
         {
+            this.routeStationForBetweenQuery = routeStationForBetweenQuery;
             this.companyRouteListQuery = companyRouteListQuery;
             this.companyRepository = companyRepository;
             this.routeListAllQuery = routeListAllQuery;
@@ -307,7 +310,7 @@ namespace BL.Services.Routes
                             break;
                         }
                     }
-                    if (isEmpty)
+                    if (isEmpty && listOfEmptyPrograms != null)
                     {
                         listOfPrograms.Add(listOfEmptyPrograms);
                     }
@@ -347,12 +350,12 @@ namespace BL.Services.Routes
             {
                 var fromStation = routeStationRepository.GetById(from, r => r.Route);
                 var toStation = routeStationRepository.GetById(to);
-                routeStationListQuery.Filter = new RouteStationFilter
+                routeStationForBetweenQuery.Filter = new RouteStationFilter
                 {
-                    RouteId = fromStation.ID,
+                    RouteId = fromStation.Route.ID,
                     DepartFromFirstStation = fromStation.DepartFromFirstStation
                 };
-                var list = routeStationListQuery.Execute().ToList();
+                var list = routeStationForBetweenQuery.Execute().ToList();
                 var result = new int[toStation.Order - fromStation.Order + 1];
                 int i = 0;
                 foreach(var rs in list)
@@ -365,9 +368,15 @@ namespace BL.Services.Routes
                 }
                 return result;
             }
+        }
 
-
-            
+        public int GetSeatNumberFromProgram(int programId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var program = programRepository.GetById(programId, p => p.Seat);
+                return program.Seat.SeatNumber;
+            }
         }
 
         private int RouteStationSeatCount(int routeStationId)

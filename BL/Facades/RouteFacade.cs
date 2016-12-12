@@ -10,6 +10,7 @@ using BL.DTOs.Routes;
 using BL.Services.Stations;
 using BL.DTOs.Stations;
 using BL.DTOs.Filters;
+using BL.DTOs.Programs;
 
 namespace BL.Facades
 {
@@ -116,6 +117,11 @@ namespace BL.Facades
             return routeService.FindRoutesWithStations(departureStationID, arriveStationID, departTime);
         }
 
+        public List<List<ProgramDTO>> ListEmptyProgramsOfRouteStations(int[] routeStationIds)
+        {
+            return routeService.ListEmptyProgramsOfRouteStations(routeStationIds);
+        }
+
         public StationDTO GetStationByRouteStation(int routeStationId)
         {
             return routeService.GetStationByRouteStation(routeStationId);
@@ -130,6 +136,11 @@ namespace BL.Facades
         public int[] GetRouteStationsBetween(int from, int to)
         {
             return routeService.GetRouteStationsBetween(from, to);
+        }
+
+        public int GetSeatNumberFromProgram(int programId)
+        {
+            return routeService.GetSeatNumberFromProgram(programId);
         }
     }
 }
