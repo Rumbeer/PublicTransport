@@ -10,6 +10,8 @@ using DAL.Entities;
 using BL.Queries;
 using BL.DTOs.Filters;
 using BL.DTOs.Stations;
+using System.IO;
+using System.Drawing;
 
 namespace BL.Services.Stations
 {
@@ -115,6 +117,56 @@ namespace BL.Services.Stations
                 }
                 return null;
             }
+        }
+
+        /// <summary>
+        /// Method which sets image of specific station
+        /// </summary>
+        /// <param name="stationId"></param>
+        /// <returns>true, if image does not existed before</returns>
+        public bool SetImageOfStation(int stationId, string pathToPhoto)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var station = stationRepository.GetById(stationId, s => s.RouteStations);
+                var stationDTO = Mapper.Map<StationDTO>(station);
+                if(stationDTO.ImagePath != null)
+                {
+                    return false;
+                }
+                stationDTO.ImagePath = pathToPhoto;
+                Mapper.Map(stationDTO, station);
+                stationRepository.Update(station);
+                uow.Commit();
+                return true;
+            }
+        }
+
+        public string GetImageOfStation(int stationId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var stationDTO = Mapper.Map<StationDTO>(stationRepository.GetById(stationId));
+                if(stationDTO != null)
+                {
+                    return stationDTO.ImagePath;
+                }
+                return null;
+            }
+        }
+
+        private byte[] ImageToByteArray(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
+
+        private Image ByteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
         }
     }
 }

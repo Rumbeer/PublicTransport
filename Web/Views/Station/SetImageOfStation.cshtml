@@ -1,0 +1,29 @@
+﻿@model Web.Models.StationPhotoModel
+
+@{
+    ViewBag.Title = "SetImageOfStation";
+}
+
+<h2>SetImageOfStation</h2>
+
+@using (Html.BeginForm("SetImageOfStation", "Station", null, FormMethod.Post,
+                                          new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Image</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImagePath)
+        </div>
+        <div class="editor-field">
+            <input id="ImagePath" title="Upload a product image"
+                   type="file" name="file" />
+        </div>
+        <p><input type="submit" value="Save" /></p>
+    </fieldset>
+}
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>

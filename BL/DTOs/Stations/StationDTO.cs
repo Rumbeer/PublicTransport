@@ -15,5 +15,6 @@ namespace BL.DTOs.Stations
         public string Name { get; set; }
         [MaxLength(256)]
         public string Town { get; set; }
+        public string ImagePath { get; set; }
     }
 }

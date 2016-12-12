@@ -265,6 +265,7 @@
     <Compile Include="Models\RouteListModel.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Models\SearchRouteModel.cs" />
+    <Compile Include="Models\StationPhotoModel.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\VehicleListModel.cs" />
     <Compile Include="MvcInstaller.cs" />
@@ -346,6 +347,7 @@
     <Content Include="Views\SpecificRoute\RouteDetails.cshtml" />
     <Content Include="Views\SpecificRoute\Search.cshtml" />
     <Content Include="Views\SpecificRoute\DisplaySearchResults.cshtml" />
+    <Content Include="Views\Station\SetImageOfStation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

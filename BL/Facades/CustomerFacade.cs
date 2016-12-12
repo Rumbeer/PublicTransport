@@ -35,7 +35,7 @@ namespace BL.Facades
                 success = false;
                 return new Guid();
             }
-            var accountId = userService.RegisterUserAccount(registrationDto);
+            var accountId = userService.RegisterUserAccount(registrationDto, true);
             customerService.CreateCustomer(accountId);
             success = true;
             return accountId;

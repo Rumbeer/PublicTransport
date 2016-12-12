@@ -3,6 +3,7 @@ using BL.DTOs.Filters;
 using BL.DTOs.Stations;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,5 +23,9 @@ namespace BL.Services.Stations
         List<StationDTO> GetStationsByFilter(StationFilter filter);
 
         string GetStationNameByRouteStation(int routeStationId);
+
+        bool SetImageOfStation(int stationId, string PathToPhoto);
+
+        string GetImageOfStation(int stationId);
     }
 }

@@ -10,6 +10,7 @@ using BL.DTOs.Routes;
 using BL.Services.Stations;
 using BL.DTOs.Stations;
 using BL.DTOs.Filters;
+using System.Drawing;
 
 namespace BL.Facades
 {
@@ -130,6 +131,16 @@ namespace BL.Facades
         public int[] GetRouteStationsBetween(int from, int to)
         {
             return routeService.GetRouteStationsBetween(from, to);
+        }
+
+        public bool SetImageOfStation(int stationId, string pathToPhoto)
+        {
+            return stationService.SetImageOfStation(stationId, pathToPhoto);
+        }
+
+        public string GetImageOfStation(int stationId)
+        {
+            return stationService.GetImageOfStation(stationId);
         }
     }
 }

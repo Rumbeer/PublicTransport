@@ -3,9 +3,11 @@ using BL.DTOs.Stations;
 using BL.Facades;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -34,6 +36,28 @@ namespace Web.Controllers
         {
             RouteFacade.DeleteStation(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult SetImageOfStation(int id)
+        {
+            return View(new StationPhotoModel { Id = id });
+        }
+
+        [HttpPost]
+        public ActionResult SetImageOfStation(int id, StationPhotoModel model, HttpPostedFileBase file)
+        {
+            if (ModelState.IsValid)
+            {
+                if (file != null)
+                {
+                    file.SaveAs(HttpContext.Server.MapPath("~/")
+                                                          + file.FileName);
+                    model.ImagePath = file.FileName;
+                }
+                RouteFacade.SetImageOfStation(model.Id, model.ImagePath);
+                return RedirectToAction("Index");
+            }
+            return View(model);
         }
     }
 }

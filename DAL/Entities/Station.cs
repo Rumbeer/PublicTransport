@@ -16,7 +16,7 @@ namespace DAL.Entities
         [Required]
         public string Name { get; set; }
         public string Town { get; set; }
-
+        public string ImagePath { get; set; }
         public virtual List<RouteStation> RouteStations { get; set; }
     }
 }

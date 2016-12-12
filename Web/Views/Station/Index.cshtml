@@ -29,7 +29,16 @@
             @Html.DisplayFor(modelItem => item.Town)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.ActionLink(item.ImagePath, "Index", "Home", item.ImagePath, null)
+        </td>
+        <td>
             @Html.ActionLink("Delete", "DeleteStation", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink("Add photo", "SetImageOfStation", new { id = item.ID })
         </td>
     </tr>
 }
