@@ -10,10 +10,11 @@ using Web.Models;
 using Web.Helper.Enums;
 using BL.DTOs.Discounts;
 using BL.DTOs.Vehicles;
+using BL.Utils.AccountPolicy;
 
 namespace Web.Controllers
 {
-
+    [Authorize(Roles = Claims.Customer)]
     public class CompanyController : Controller
     {
         public CompanyFacade CompanyFacade { get; set; }

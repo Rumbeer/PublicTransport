@@ -6,16 +6,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BL.Services.User;
+using BL.DTOs.UserAccount;
 
 namespace BL.Facades
 {
     public class CustomerFacade
     {
         private readonly ICustomerService customerService;
-        public CustomerFacade(ICustomerService customerService)
+        private readonly IUserService userService;
+
+        public CustomerFacade(ICustomerService customerService, IUserService userService)
         {
             this.customerService = customerService;
+            this.userService = userService;
         }
+
+        /// <summary>
+        /// Performs customer registration
+        /// </summary>
+        /// <param name="registrationDto">Customer registration details</param>
+        /// <param name="success">argument that tells whether the registration was successful</param>
+        /// <returns>Registered customer account ID</returns>
+        public Guid RegisterCustomer(UserRegistrationDTO registrationDto, out bool success)
+        {
+            if (customerService.GetCustomerByEmail(registrationDto.Email) != null)
+            {
+                success = false;
+                return new Guid();
+            }
+            var accountId = userService.RegisterUserAccount(registrationDto);
+            customerService.CreateCustomer(accountId);
+            success = true;
+            return accountId;
+        }
+
+        /// <summary>
+        /// Authenticates user with given username and password
+        /// </summary>
+        /// <param name="loginDto">user login details</param>
+        /// <returns>ID of the authenticated user</returns>
+        public Guid AuthenticateUser(UserLoginDTO loginDto)
+        {
+            return userService.AuthenticateUser(loginDto);
+        }
+
         /// <summary>
         /// Creates new customer
         /// </summary>

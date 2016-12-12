@@ -9,6 +9,11 @@ using Castle.Windsor;
 using DAL;
 using Riganti.Utils.Infrastructure.Core;
 using Riganti.Utils.Infrastructure.EntityFramework;
+using BrockAllen.MembershipReboot;
+using BL.Repositories.UserAccount;
+using BL.Services.User;
+using UserAccount = DAL.Entities.UserAccount;
+
 
 namespace BL
 {
@@ -29,6 +34,20 @@ namespace BL
                 Component.For<IUnitOfWorkRegistry>()
                     .Instance(new HttpContextUnitOfWorkRegistry(new ThreadLocalUnitOfWorkRegistry()))
                     .LifestyleSingleton(),
+
+                Component.For<IUserAccountRepository<UserAccount>>()
+                    .ImplementedBy<UserAccountManager>()
+                    .LifestyleTransient(),
+
+                Component.For<UserAccountService<UserAccount>>()
+                    .ImplementedBy<UserAccountService<UserAccount>>()
+                    .DependsOn(Dependency.OnComponent<IUserAccountRepository<UserAccount>, UserAccountManager>())
+                    .LifestyleTransient(),
+
+                 Component.For<AuthenticationWrapper>()
+                    .ImplementedBy<AuthenticationWrapper>()
+                    .DependsOn(Dependency.OnComponent<UserAccountService<UserAccount>, UserAccountService<UserAccount>>())
+                    .LifestyleTransient(),
 
                 Component.For(typeof(IRepository<,>))
                     .ImplementedBy(typeof(EntityFrameworkRepository<,>))

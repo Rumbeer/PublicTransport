@@ -40,8 +40,8 @@
       <HintPath>..\packages\AutoMapper.5.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="BrockAllen.MembershipReboot, Version=8.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\BrockAllen.MembershipReboot.8.4.0\lib\net45\BrockAllen.MembershipReboot.dll</HintPath>
+    <Reference Include="BrockAllen.MembershipReboot, Version=9.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\BrockAllen.MembershipReboot.9.0.0\lib\net45\BrockAllen.MembershipReboot.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="BrockAllen.MembershipReboot.Ef, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,6 +81,9 @@
     <Compile Include="AppInfrastructure\AppUnitOfWorkProvider.cs" />
     <Compile Include="BLInstaller.cs" />
     <Compile Include="DTOs\Routes\RouteListQueryResultDTO.cs" />
+    <Compile Include="DTOs\UserAccount\UserAccountDTO.cs" />
+    <Compile Include="DTOs\UserAccount\UserLoginDTO.cs" />
+    <Compile Include="DTOs\UserAccount\UserRegistrationDTO.cs" />
     <Compile Include="Enum\VehicleType.cs" />
     <Compile Include="Enum\DiscountType.cs" />
     <Compile Include="DTOs\Companies\CompanyDTO.cs" />
@@ -138,6 +141,8 @@
     <Compile Include="Repositories\SeatRepository.cs" />
     <Compile Include="Repositories\StationRepository.cs" />
     <Compile Include="Repositories\TicketRepository.cs" />
+    <Compile Include="Repositories\UserAccount\UserAccountManager.cs" />
+    <Compile Include="Repositories\UserAccount\UserAccountRepository.cs" />
     <Compile Include="Repositories\VehicleRepository.cs" />
     <Compile Include="Services\AppService.cs" />
     <Compile Include="Services\Companies\CompanyService.cs" />
@@ -152,12 +157,18 @@
     <Compile Include="Services\Stations\StationService.cs" />
     <Compile Include="Services\Tickets\ITicketService.cs" />
     <Compile Include="Services\Tickets\TicketService.cs" />
+    <Compile Include="Services\User\AuthenticationWrapper.cs" />
+    <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\UserService.cs" />
     <Compile Include="Services\Vehicles\IVehicleService.cs" />
     <Compile Include="Services\Vehicles\VehicleService.cs" />
+    <Compile Include="Utils\AccountPolicy\Claims.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

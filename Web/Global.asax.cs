@@ -36,6 +36,9 @@ namespace Web
             // configure mapping within BL
             Mapping.ConfigureMapping();
 
+            // initialize default user accounts (admin, ...)
+            //UserAccountInit.InitializeUserAccounts(container);
+
             // set controller factory
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
