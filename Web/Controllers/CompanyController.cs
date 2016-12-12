@@ -14,7 +14,7 @@ using BL.Utils.AccountPolicy;
 
 namespace Web.Controllers
 {
-    [Authorize(Roles = Claims.Customer)]
+    [Authorize(Roles = Claims.Admin)]
     public class CompanyController : Controller
     {
         public CompanyFacade CompanyFacade { get; set; }

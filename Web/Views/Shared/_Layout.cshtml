@@ -21,17 +21,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-<<<<<<< HEAD
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Administrator"))
                         {
 
                             <li>@Html.ActionLink("Stations", "Index", "Station")</li>
+                            <li>@Html.ActionLink("Companies", "ListAllCompanies", "Company")</li>
                         }
                         else if (User.IsInRole("Customer"))
                         {
-                            <li>@Html.ActionLink("Companies", "ListAllCompanies", "Company")</li>
+                            <li>@Html.ActionLink("Search", "Search", "SpecificRoute")</li>
                         }
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user grey"></span> @User.Identity.Name.Split('@')[0] <b class="caret grey"></b></a>
@@ -59,14 +59,6 @@
                             </ul>
                         </li>
                     }
-=======
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Companies", "ListAllCompanies", "Company")</li>
-                    <li>@Html.ActionLink("Stations", "Index", "Station")</li>
-                    <li>@Html.ActionLink("Search", "Search", "SpecificRoute")</li>
->>>>>>> b5350e5c55c5ef44ffc2846487d8632be75a3753
                 </ul>
             </div>
         </div>
