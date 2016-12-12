@@ -10,12 +10,12 @@ namespace BL.Repositories.UserAccount
     /// <summary>
     /// User Account Manager, required by UserAccountService
     /// </summary>
-    public class UserAccountManager : DbContextUserAccountRepository<AppDbContext, Riganti.Utils.Infrastructure.EntityFramework.UserAccount>, IUserAccountRepository<Riganti.Utils.Infrastructure.EntityFramework.UserAccount>
+    public class UserAccountManager : DbContextUserAccountRepository<AppDbContext, DAL.Entities.UserAccount>, IUserAccountRepository<DAL.Entities.UserAccount>
     {
         public UserAccountManager(Func<DbContext> dbContextFactory)
             : base(dbContextFactory.Invoke() as AppDbContext) { }
 
-        protected override IQueryable<Riganti.Utils.Infrastructure.EntityFramework.UserAccount> DefaultQueryFilter(IQueryable<Riganti.Utils.Infrastructure.EntityFramework.UserAccount> query, string claimFilter)
+        protected override IQueryable<DAL.Entities.UserAccount> DefaultQueryFilter(IQueryable<DAL.Entities.UserAccount> query, string claimFilter)
         {
             if (query == null)
             {

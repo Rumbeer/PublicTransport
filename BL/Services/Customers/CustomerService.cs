@@ -8,7 +8,7 @@ using BL.Queries;
 using BL.Repositories;
 using DAL.Entities;
 using Riganti.Utils.Infrastructure.Core;
-
+using BL.Repositories.UserAccount;
 
 namespace BL.Services.Customers
 {
@@ -23,13 +23,35 @@ namespace BL.Services.Customers
 
         private readonly CustomerListQuery customerListQuery;
 
-        public CustomerService(CustomerRepository customerRepository, CustomerListAllQuery customerListAllQuery, CustomerListQuery customerListQuery)
+        private readonly UserAccountRepository userAccountRepository;
+
+        public CustomerService(CustomerRepository customerRepository, CustomerListAllQuery customerListAllQuery, CustomerListQuery customerListQuery,
+                                    UserAccountRepository userAccountRepository)
         {
             this.customerRepository = customerRepository;
             this.customerListAllQuery = customerListAllQuery;
             this.customerListQuery = customerListQuery;
+            this.userAccountRepository = userAccountRepository;
         }
         #endregion
+
+        /// <summary>
+        /// Creates new customer (user account must be created first)
+        /// </summary>
+        /// <param name="userAccountId">Customer user account ID</param>
+        public void CreateCustomer(Guid userAccountId)
+        {
+            using (var uow = UnitOfWorkProvider.Create())
+            {
+                var customerAccount = userAccountRepository.GetById(userAccountId);
+
+                var customer = new Customer { Account = customerAccount };
+
+                customerRepository.Insert(customer);
+
+                uow.Commit();
+            }
+        }
 
         public void CreateCustomer(CustomerDTO customerDto)
         {

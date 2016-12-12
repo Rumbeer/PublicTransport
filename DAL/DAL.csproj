@@ -74,6 +74,7 @@
     <Compile Include="Entities\Seat.cs" />
     <Compile Include="Entities\Station.cs" />
     <Compile Include="Entities\Ticket.cs" />
+    <Compile Include="Entities\UserAccount.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Enum\DiscountType.cs" />
     <Compile Include="Enum\VehicleType.cs" />
@@ -92,7 +93,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

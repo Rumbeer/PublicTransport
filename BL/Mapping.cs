@@ -12,6 +12,7 @@ using BL.DTOs;
 using BL.DTOs.Stations;
 using BL.DTOs.Routes;
 using BL.DTOs.RouteStations;
+using BL.DTOs.UserAccount;
 
 namespace BL
 {
@@ -27,7 +28,19 @@ namespace BL
                     .ReverseMap();
 
                 config.CreateMap<Seat, SeatDTO>().ReverseMap();
-                config.CreateMap<Customer, CustomerDTO>().ReverseMap();
+                config.CreateMap<Customer, CustomerDTO>()
+                .ForMember(dest => dest.Email, opts => opts.MapFrom(src => src.Account.Email))
+                    .ForMember(dest => dest.FirstName, opts => opts.MapFrom(src => src.Account.FirstName))
+                    .ForMember(dest => dest.LastName, opts => opts.MapFrom(src => src.Account.LastName))
+                    .ForMember(dest => dest.PhoneNumber, opts => opts.MapFrom(src => src.Account.MobilePhoneNumber))
+                    .ForMember(dest => dest.Address, opts => opts.MapFrom(src => src.Account.Address))
+                    .ForMember(dest => dest.BirthDate, opts => opts.MapFrom(src => src.Account.BirthDate))
+                    .ReverseMap();
+
+                config.CreateMap<UserAccount, UserAccountDTO>().ReverseMap();
+
+                config.CreateMap<UserRegistrationDTO, UserAccount>();
+
                 config.CreateMap<Discount, DiscountDTO>()
                     .ForMember(dest => dest.DiscountType, option => option.MapFrom(discount => (BL.Enum.DiscountType)discount.DiscountType))
                     .ReverseMap();

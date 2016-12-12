@@ -7,6 +7,8 @@ namespace BL.Services.Customers
 {
     public interface ICustomerService
     {
+        void CreateCustomer(Guid accountId);
+
         /// <summary>
         /// Creates new customer
         /// </summary>

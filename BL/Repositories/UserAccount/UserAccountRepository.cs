@@ -4,7 +4,7 @@ using Riganti.Utils.Infrastructure.EntityFramework;
 
 namespace BL.Repositories.UserAccount
 {
-    public class UserAccountRepository : EntityFrameworkRepository<Riganti.Utils.Infrastructure.EntityFramework.UserAccount, Guid>
+    public class UserAccountRepository : EntityFrameworkRepository<DAL.Entities.UserAccount, Guid>
     {
         public UserAccountRepository(IUnitOfWorkProvider provider) : base(provider) { }
     }
