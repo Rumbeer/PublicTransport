@@ -90,7 +90,9 @@ namespace Web.Controllers
                 {
                     CompanyId = companyId,
                     RouteId = routeId,
-                    RouteStation = new RouteStationDTO()
+                    RouteStation = new RouteStationDTO(),
+                    TimeFromFirstStation = "00:00:00",
+                    TimeToNextStation = "00:00:00"
                 });
             }
 
@@ -132,11 +134,17 @@ namespace Web.Controllers
             foreach (var template in model)
             {
                 var station = RouteFacade.GetAllStationsByFilter(new StationFilter { Name = template.StationName, Town = template.StationTown });
-                if(station.Any())
+                if(!station.Any())
                 {
                     ViewBag.Message = "Station (Name: " + template.StationName + " Town: " + template.StationTown + ") not found";
                     return View(model);
-                }               
+                }          
+                if(!(template.RouteStation.DistanceFromPreviousStation > 0))
+                {
+                    ViewBag.Message = "Station (Name: " + template.StationName + " Town: " + template.StationTown + ") distance < 0";
+                    return View(model);
+                }     
+
                 if(TimeSpan.TryParseExact(template.TimeFromFirstStation, format, culture, out timeFromFirstStation) &&
                     TimeSpan.TryParseExact(template.TimeToNextStation, format, culture, out timeToNextStation))
                 {

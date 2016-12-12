@@ -246,6 +246,7 @@
     <Compile Include="Controllers\RouteController.cs" />
     <Compile Include="Controllers\SpecificRouteController.cs" />
     <Compile Include="Controllers\StationController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,8 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RouteDetailsModel.cs" />
     <Compile Include="Models\RouteListModel.cs" />
+    <Compile Include="Models\SearchResultsModel.cs" />
+    <Compile Include="Models\SearchRouteModel.cs" />
     <Compile Include="Models\TestModel.cs" />
     <Compile Include="Models\VehicleListModel.cs" />
     <Compile Include="MvcInstaller.cs" />
@@ -341,9 +344,12 @@
     <Content Include="Views\Route\CreateRouteTemplate.cshtml" />
     <Content Include="Views\SpecificRoute\CreateSpecificRoute.cshtml" />
     <Content Include="Views\SpecificRoute\RouteDetails.cshtml" />
+    <Content Include="Views\SpecificRoute\Search.cshtml" />
+    <Content Include="Views\SpecificRoute\DisplaySearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Ticket\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -14,19 +14,20 @@
 </p>
 
 <table class="table">
-    <th>
-        @Html.DisplayName("Licence Plate")
-    </th>
-    <th>
-        @Html.DisplayName("Brand")
-    </th>
-    <th>
-        @Html.DisplayName("Type of Vehicle")
-    </th>
-    <th>
-        @Html.DisplayName("Number of Seats")
-    </th>
-    <th></th>
+    <tr>
+        <th>
+            @Html.DisplayName("Licence Plate")
+        </th>
+        <th>
+            @Html.DisplayName("Brand")
+        </th>
+        <th>
+            @Html.DisplayName("Type of Vehicle")
+        </th>
+        <th>
+            @Html.DisplayName("Number of Seats")
+        </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model.Vehicles)
@@ -55,5 +56,5 @@
 </div>
 @Html.HiddenFor(model => Model.CompanyId)
 <div>
-    @Html.ActionLink("Back to List", "CompanyDetails", "Company", new { companyId = Model.CompanyId }, null)
+    @Html.ActionLink("Back to List", "CompanyDetails", "Company", new { id = Model.CompanyId }, null)
 </div>

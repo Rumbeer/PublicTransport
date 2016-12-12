@@ -14,16 +14,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Templates.TimeToNextStation)
+            @Html.DisplayName("Town")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Templates.TimeFromFirstStation)
+            @Html.DisplayName("Name of station")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Templates.Order)
+            @Html.DisplayName("Time to next station")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Templates.DistanceFromPreviousStation)
+            @Html.DisplayName("Time from first station")
+        </th>
+        <th>
+            @Html.DisplayName("Order of this station")
+        </th>
+        <th>
+            @Html.DisplayName("Distance from previous station (km)")
         </th>
         <th></th>
     </tr>
@@ -31,6 +37,15 @@
     @foreach (var item in Model.Templates)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Stations[item.Order].Town)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Stations[item.Order].Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeToNextStation)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeToNextStation)
             </td>

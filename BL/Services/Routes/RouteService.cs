@@ -14,6 +14,7 @@ using BL.DTOs.Routes;
 using BL.DTOs.RouteStations;
 using BL.DTOs.Programs;
 using Riganti.Utils.Infrastructure.Core;
+using BL.DTOs.Stations;
 
 namespace BL.Services.Routes
 {
@@ -76,23 +77,29 @@ namespace BL.Services.Routes
 
         public List<RouteStationDTO> GetRouteTemplate(int routeId)
         {
-            createSpecificRouteQuery.RouteId = routeId;
-            return createSpecificRouteQuery.Execute().ToList().OrderBy(r => r.Order).ToList();
+            using (UnitOfWorkProvider.Create())
+            {
+                createSpecificRouteQuery.RouteId = routeId;
+                return createSpecificRouteQuery.Execute().ToList().OrderBy(r => r.Order).ToList();
+            }
         }
 
         public List<DateTime> GetRouteDepartTimes(int routeId)
         {
             var routeStations = GetRouteStationsByRoute(routeId);
-            var result = new List<DateTime>();
-            foreach(var routeStation in routeStations)
+            using (UnitOfWorkProvider.Create())
             {
-                if(routeStation.DepartFromFirstStation != null && !result.Contains(routeStation.DepartFromFirstStation.GetValueOrDefault()))
+                var result = new List<DateTime>();
+                foreach (var routeStation in routeStations)
                 {
-                    result.Add(routeStation.DepartFromFirstStation.GetValueOrDefault());
+                    if (routeStation.DepartFromFirstStation != null && !result.Contains(routeStation.DepartFromFirstStation.GetValueOrDefault()))
+                    {
+                        result.Add(routeStation.DepartFromFirstStation.GetValueOrDefault());
+                    }
                 }
+                result.Sort();
+                return result;
             }
-            result.Sort();
-            return result;
         }
 
         public void CreateSpecificRoute(int routeId, DateTime departTime, int vehicleId)
@@ -218,9 +225,14 @@ namespace BL.Services.Routes
                     int routeId = GetRouteIdByRouteStation(departStation.ID);
                     foreach (var arriveStation in arriveStations)
                     {
-                        if (GetRouteIdByRouteStation(arriveStation.ID) == routeId && departStation.DepartFromFirstStation == arriveStation.DepartFromFirstStation)
+                        if (GetRouteIdByRouteStation(arriveStation.ID) == routeId && 
+                            departStation.DepartFromFirstStation == arriveStation.DepartFromFirstStation && 
+                            departStation.DepartFromFirstStation != null)
                         {
-                            links.Add(Tuple.Create(departStation, arriveStation));
+                            if(departStation.DepartFromFirstStation + departStation.TimeFromFirstStation > departTime)
+                            {
+                                links.Add(Tuple.Create(departStation, arriveStation));
+                            }                          
                         }
                     }
                 }
@@ -312,6 +324,14 @@ namespace BL.Services.Routes
             }
         }
 
+        public StationDTO GetStationByRouteStation(int routeStationId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                return Mapper.Map<StationDTO>(routeStationRepository.GetById(routeStationId, s => s.Station).Station);
+            }
+        }
+
         public void DeleteRoute(int routeId)
         {
             using (var uow = UnitOfWorkProvider.Create())
@@ -319,6 +339,35 @@ namespace BL.Services.Routes
                 routeRepository.Delete(routeId);
                 uow.Commit();
             }
+        }
+
+        public int[] GetRouteStationsBetween(int from, int to)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                var fromStation = routeStationRepository.GetById(from, r => r.Route);
+                var toStation = routeStationRepository.GetById(to);
+                routeStationListQuery.Filter = new RouteStationFilter
+                {
+                    RouteId = fromStation.ID,
+                    DepartFromFirstStation = fromStation.DepartFromFirstStation
+                };
+                var list = routeStationListQuery.Execute().ToList();
+                var result = new int[toStation.Order - fromStation.Order + 1];
+                int i = 0;
+                foreach(var rs in list)
+                {
+                    if(!(rs.Order < fromStation.Order || rs.Order > toStation.Order))
+                    {
+                        result[i] = rs.ID;
+                        i++;
+                    }
+                }
+                return result;
+            }
+
+
+            
         }
 
         private int RouteStationSeatCount(int routeStationId)

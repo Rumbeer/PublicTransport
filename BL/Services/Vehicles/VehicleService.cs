@@ -100,7 +100,7 @@ namespace BL.Services.Vehicles
             using (UnitOfWorkProvider.Create())
             {
                 var vehicle = vehicleRepository.GetById(vehicleId, v => v.Company);
-                if(companyId != null)
+                if(companyId != null && vehicle != null)
                 {
                     if(vehicle.Company.ID != companyId)
                     {
@@ -156,6 +156,33 @@ namespace BL.Services.Vehicles
                 seatListQuery.Filter = new SeatFilter { VehicleId = vehicleId };
                 var list = seatListQuery.Execute();
                 return list.Select(seat => Mapper.Map<SeatDTO>(seat));
+            }
+        }
+
+        public IEnumerable<string> GetVehicleLicencePlates(int companyId)
+        {
+            using (UnitOfWorkProvider.Create())
+            {
+                if (companyRepository.GetById(companyId) == null)
+                {
+                    throw new NullReferenceException("Vehicle service - GetVehicleLicencePlates(...) company cant be null");
+                }
+                var query = vehicleListQuery;
+                query.ClearSortCriterias();
+                query.Filter = new VehicleFilter
+                {
+                    CompanyId = companyId
+                };
+
+                query.Skip = 0;
+                query.AddSortCriteria("LicencePlate", SortDirection.Ascending);
+                var list = vehicleListQuery.Execute();
+                var result = new List<string>();
+                foreach(var vehicle in list)
+                {
+                    result.Add(vehicle.LicencePlate);
+                }
+                return result;
             }
         }
     }
