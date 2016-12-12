@@ -11,6 +11,8 @@ using BL.Services.Stations;
 using BL.DTOs.Stations;
 using BL.DTOs.Filters;
 using System.Drawing;
+using BL.DTOs.Programs;
+
 
 namespace BL.Facades
 {
@@ -117,6 +119,11 @@ namespace BL.Facades
             return routeService.FindRoutesWithStations(departureStationID, arriveStationID, departTime);
         }
 
+        public List<List<ProgramDTO>> ListEmptyProgramsOfRouteStations(int[] routeStationIds)
+        {
+            return routeService.ListEmptyProgramsOfRouteStations(routeStationIds);
+        }
+
         public StationDTO GetStationByRouteStation(int routeStationId)
         {
             return routeService.GetStationByRouteStation(routeStationId);
@@ -141,6 +148,10 @@ namespace BL.Facades
         public string GetImageOfStation(int stationId)
         {
             return stationService.GetImageOfStation(stationId);
+
+        public int GetSeatNumberFromProgram(int programId)
+        {
+            return routeService.GetSeatNumberFromProgram(programId);
         }
     }
 }

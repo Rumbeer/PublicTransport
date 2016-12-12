@@ -125,6 +125,7 @@
     <Compile Include="Queries\FindProgramsOfRouteQuery.cs" />
     <Compile Include="Queries\RouteListAllQuery.cs" />
     <Compile Include="Queries\RouteListQuery.cs" />
+    <Compile Include="Queries\RouteStationForBetweenQuery.cs" />
     <Compile Include="Queries\RouteStationListQuery.cs" />
     <Compile Include="Queries\SeatListQuery.cs" />
     <Compile Include="Queries\StationCreateQuery.cs" />
