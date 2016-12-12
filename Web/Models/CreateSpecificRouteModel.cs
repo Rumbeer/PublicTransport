@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Collections.Generic;
 
 namespace Web.Models
 {
@@ -11,6 +12,10 @@ namespace Web.Models
 
         public int VehicleId { get; set; }
 
+        public string LicencePlate { get; set; }
+
         public int CompanyId { get; set; }
+
+        public List<string> LicencePlates { get; set; }
     }
 }

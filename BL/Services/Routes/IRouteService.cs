@@ -2,6 +2,7 @@
 using BL.DTOs.Routes;
 using BL.DTOs.RouteStations;
 using BL.DTOs.Seats;
+using BL.DTOs.Stations;
 using System;
 using System.Collections.Generic;
 
@@ -38,5 +39,15 @@ namespace BL.Services.Routes
         RouteListQueryResultDTO ListCompanyRoutes(int companyId, int page = 1);
 
         void DeleteRoute(int routeId);
+
+        StationDTO GetStationByRouteStation(int routeStationId);
+
+        /// <summary>
+        /// returns Ids of RouteStations that are between the RouteStations with id from and RouteStations with id to
+        /// </summary>
+        /// <param name="from">id of first RouteStations</param>
+        /// <param name="to">id of last RouteStations</param>
+        /// <returns></returns>
+        int[] GetRouteStationsBetween(int from, int to);
     }
 }

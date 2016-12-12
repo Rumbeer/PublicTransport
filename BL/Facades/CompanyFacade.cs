@@ -192,7 +192,17 @@ namespace BL.Facades
         /// <returns></returns>
         public IEnumerable<SeatDTO> GetVehicleSeats(int vehicleId)
         {
-            return GetVehicleSeats(vehicleId);
+            return vehicleService.GetVehicleSeats(vehicleId);
+        }
+
+        /// <summary>
+        /// Gets licence plates of all vehicles in given company
+        /// </summary>
+        /// <param name="companyId">id of company</param>
+        /// <returns></returns>
+        public IEnumerable<string> GetVehicleLicencePlates(int companyId)
+        {
+            return vehicleService.GetVehicleLicencePlates(companyId);
         }
     }
 }

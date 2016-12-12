@@ -110,5 +110,26 @@ namespace BL.Facades
         {
             return routeService.GetRouteDepartTimes(routeId);
         }
+
+        public List<Tuple<RouteStationDTO, RouteStationDTO>> FindRoutesWithStations(int departureStationID, int arriveStationID, DateTime departTime)
+        {
+            return routeService.FindRoutesWithStations(departureStationID, arriveStationID, departTime);
+        }
+
+        public StationDTO GetStationByRouteStation(int routeStationId)
+        {
+            return routeService.GetStationByRouteStation(routeStationId);
+        }
+
+        /// <summary>
+        /// returns Ids of RouteStations that are between the RouteStations with id from and RouteStations with id to
+        /// </summary>
+        /// <param name="from">id of first RouteStations</param>
+        /// <param name="to">id of last RouteStations</param>
+        /// <returns></returns>
+        public int[] GetRouteStationsBetween(int from, int to)
+        {
+            return routeService.GetRouteStationsBetween(from, to);
+        }
     }
 }

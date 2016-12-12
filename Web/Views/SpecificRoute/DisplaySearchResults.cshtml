@@ -1,0 +1,63 @@
+﻿@model Web.Models.SearchResultsModel
+
+@{
+    ViewBag.Title = "DisplaySearchResults";
+}
+
+<h2>DisplaySearchResults</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Depart town")
+        </th>
+        <th>
+            @Html.DisplayName("Depart station name")
+        </th>
+        <th>
+            @Html.DisplayName("Depart time")
+        </th>
+        <th>
+            @Html.DisplayName("Arrival town")
+        </th>
+        <th>
+            @Html.DisplayName("Arrival station name")
+        </th>
+        <th>
+            @Html.DisplayName("Arrival time")
+        </th>
+        <th> </th>
+    </tr>
+    @foreach (var item in Model.Results)
+    {
+
+        DateTime departTime = item.Item1.DepartFromFirstStation.GetValueOrDefault() + item.Item1.TimeFromFirstStation;
+        DateTime arrivalTime = item.Item2.DepartFromFirstStation.GetValueOrDefault() + item.Item2.TimeFromFirstStation;
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.DepartStation.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DepartStation.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => departTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ArriveStation.Town)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ArriveStation.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => arrivalTime)
+                </td>
+                <td>
+                    @Html.ActionLink("Order Ticket", "OrderTicket", "Ticket", new { departRouteStationId = item.Item1.ID, arrivalRouteStationId = item.Item2.ID }, null)
+                </td>
+                <th> </th>
+            </tr>
+        }
+</table>
+@Html.ActionLink("Search", "Search")
